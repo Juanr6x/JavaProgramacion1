@@ -4,13 +4,12 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import entorno.InterfaceJuego; 
-import entorno.InterfaceJuego;
+
 public class Menu extends JPanel {
     private Image fondo;
     private ImageIcon boton1, boton2;
     private JButton boton1Btn, boton2Btn;
-    private InterfaceJuego juego; 
+ 
     public Menu() {
         // Carga el fondo
         fondo = new ImageIcon("C:\\JavaProgramacion1\\ProyectoBaseTP\\src\\Imagenes\\fondomenu1.png").getImage();
@@ -37,7 +36,7 @@ public class Menu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Botón 1 presionado");
             	
-            juego.
+            
             }
         });
 
