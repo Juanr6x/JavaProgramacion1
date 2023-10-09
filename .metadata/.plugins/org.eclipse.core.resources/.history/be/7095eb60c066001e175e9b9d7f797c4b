@@ -1,0 +1,28 @@
+package entorno;
+
+import java.awt.Image;
+
+public class Manzana {
+	double x;
+	double y;
+	int alto;
+	int ancho;
+	Image img1;
+	
+	public Manzana(int x, int y,int alto, int ancho) 
+	{	this.x = x;
+		this.y = y;
+
+	img1 = Herramientas.cargarImagen("nave.png");
+	}
+
+	public void dibujarse(Entorno entorno)
+	{
+	//	entorno.dibujarTriangulo(this.x, this.y, 50, 30, this.angulo, Color.yellow);
+	
+		if (entorno.estaPresionada(entorno.TECLA_ARRIBA))
+			entorno.dibujarImagen(img1, this.x, this.y, this.angulo, 0.3);
+		else
+			entorno.dibujarImagen(img2, this.x, this.y, this.angulo, 0.3);
+	}
+}

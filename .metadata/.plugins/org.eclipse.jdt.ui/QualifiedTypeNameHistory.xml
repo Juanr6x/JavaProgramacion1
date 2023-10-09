@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.awt.Image"/>
+    <fullyQualifiedTypeName name="entorno.Personaje"/>
+    <fullyQualifiedTypeName name="juego.Juego"/>
+    <fullyQualifiedTypeName name="entorno.InterfaceJuego"/>
+    <fullyQualifiedTypeName name="entorno.Menu"/>
+    <fullyQualifiedTypeName name="entorno.Herramientas"/>
+    <fullyQualifiedTypeName name="entorno.Manzana"/>
+</qualifiedTypeNameHistroy>

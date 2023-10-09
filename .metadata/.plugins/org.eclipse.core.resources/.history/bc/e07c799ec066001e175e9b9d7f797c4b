@@ -1,0 +1,27 @@
+package entorno;
+
+import java.awt.Image;
+
+public class Manzana {
+	double x;
+	double y;
+	int alto;
+	int ancho;
+	Image img1;
+	
+	public Manzana(int x, int y,int alto, int ancho) 
+	{	this.x = x;
+		this.y = y;
+
+	img1 = Herramientas.cargarImagen("Manzana1.png");
+	}
+
+	public void dibujarse(Entorno entorno)
+	{
+	//	entorno.dibujarTriangulo(this.x, this.y, 50, 30, this.angulo, Color.yellow);
+	
+		
+			entorno.dibujarImagen(img1, this.x, this.y,0);
+		
+	}
+}
