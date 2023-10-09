@@ -36,6 +36,7 @@ public class Menu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Botón 1 presionado");
             	
+            	InterfaceJuego.class.getConstructors();
             }
         });
 

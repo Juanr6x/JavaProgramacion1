@@ -28,7 +28,7 @@ public class Juego extends InterfaceJuego
 		setBackground(Color.BLACK);
 		fondo =  Herramientas.cargarImagen("C:\\JavaProgramacion1\\ProyectoBaseTP\\src\\Imagenes\\fondomenucompleto.png");
 		
-		
+		this
 		// Inicia el juego!
 		this.entorno.iniciar();
 		

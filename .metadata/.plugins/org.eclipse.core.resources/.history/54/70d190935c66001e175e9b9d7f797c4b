@@ -1,9 +1,8 @@
 package juego;
 
 
-import java.awt.Color;
 import java.awt.Image;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 import entorno.Menu;
@@ -25,8 +24,7 @@ public class Juego extends InterfaceJuego
 		
 		// Inicializar lo que haga falta para el juego
 		// ...
-		setBackground(Color.BLACK);
-		fondo =  Herramientas.cargarImagen("C:\\JavaProgramacion1\\ProyectoBaseTP\\src\\Imagenes\\fondomenucompleto.png");
+		fondo =  Herramientas.cargarImagen("C:\\JavaProgramacion1\\ProyectoBaseTP\\src\\Imagenes\\fondomenu1.png");
 		
 		
 		// Inicia el juego!

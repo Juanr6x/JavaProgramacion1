@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import entorno.InterfaceJuego; 
+import entorno.InterfaceJuego;
 public class Menu extends JPanel {
     private Image fondo;
     private ImageIcon boton1, boton2;
@@ -36,6 +37,7 @@ public class Menu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Botón 1 presionado");
             	
+            juego.
             }
         });
 
