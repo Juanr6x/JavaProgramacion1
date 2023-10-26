@@ -1,11 +1,9 @@
 package juego;
 
-import java.awt.Point;
-
 import entorno.Entorno;
 import entorno.InterfaceJuego;
-import entorno.Menu;
-import entorno.Herramientas;
+// import entorno.Menu;
+// import entorno.Herramientas;
 
 public class Juego extends InterfaceJuego {
 	private Entorno entorno;
@@ -15,16 +13,23 @@ public class Juego extends InterfaceJuego {
 	private Laika laika = new Laika();
 
 	Juego() {
+		// Inicio del juego
 		this.entorno = new Entorno(this, "Attack on Titan, Final Season - Grupo ... - v1", width, height);
 		this.calle = new Calle();
 		this.entorno.iniciar();
 	}
 
 	public void tick() {
+		// Dibuja en pantalla
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
+
+		// Mueve a Laika
 		Utilidades.escucharTecla(entorno, laika);
+
+		// Imprime coordenadas de Laika para debug
 		Utilidades.imprimirCoordenadas(laika);
+
 	}
 
 	@SuppressWarnings("unused")

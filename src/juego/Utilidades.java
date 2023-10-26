@@ -3,8 +3,10 @@ package juego;
 import java.awt.Point;
 import entorno.Entorno;
 
-class Utilidades {
+abstract class Utilidades {
 
+	// Funciona a modo de eventos de teclado
+	// y ejecuta acciones de Laika
 	static void escucharTecla(Entorno entorno, Laika laika) {
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
 			laika.moverDerecha();
@@ -20,6 +22,7 @@ class Utilidades {
 		}
 	}
 
+	// Imprime las coordenadas de Laika en consola, para debug
 	static void imprimirCoordenadas(Laika laika) {
 		System.out.println("--------------------");
 		System.out.println("x = " + laika.getX());
@@ -27,6 +30,8 @@ class Utilidades {
 		System.out.println("--------------------");
 	}
 
+	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,
+	// para saber donde dibujarla posteriormente
 	static Point coordenadaCuadra(int numeroDeCalle) {
 		Point coordenadas = new Point(0, 0);
 

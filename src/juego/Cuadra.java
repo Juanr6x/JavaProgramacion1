@@ -15,6 +15,7 @@ public class Cuadra {
 		this.manzana = Herramientas.cargarImagen("imagenes/Manzana" + numeroDeCalle + ".png");
 		this.numeroDeCalle = numeroDeCalle;
 
+		// recupero las coordenadas de la cuadra para una correcta ubicacion en el mapa
 		this.x = (int) Utilidades.coordenadaCuadra(numeroDeCalle).getX();
 		this.y = (int) Utilidades.coordenadaCuadra(numeroDeCalle).getY();
 	}

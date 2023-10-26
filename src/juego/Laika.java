@@ -6,7 +6,7 @@ import entorno.Herramientas;
 
 public class Laika {
 	private int x, y;
-	private boolean estaViva;
+	// private boolean estaViva;
 	private double escala = 0.04;
 	private int velocidad = 3;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");
@@ -47,11 +47,11 @@ public class Laika {
 		return false;
 	}
 
-	private boolean planta() {
-		return false;
-	}
+	// private boolean planta() {
+	// return false;
+	// }
 
-	private RayoDestructor dispararRayo() {
-		return new RayoDestructor();
-	}
+	// private RayoDestructor dispararRayo() {
+	// return new RayoDestructor();
+	// }
 }
