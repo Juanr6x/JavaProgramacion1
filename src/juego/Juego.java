@@ -1,37 +1,41 @@
 
 package juego;
 
-import java.awt.Image;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 import entorno.Menu;
 import entorno.Herramientas;
 
 public class Juego extends InterfaceJuego {
-	// El objeto Entorno que controla el tiempo y otros
 	private Entorno entorno;
-	private Image fondo;
-	private Laika laika = new Laika();
-	private Calle calle;
 	private int width = 800;
 	private int height = 600;
+	private Calle calle;
+	private Laika laika = new Laika();
 
 	Juego() {
-
 		this.entorno = new Entorno(this, "Attack on Titan, Final Season - Grupo ... - v1", width, height);
-		this.calle = new Calle(width, height);
+		this.calle = new Calle();
 		this.entorno.iniciar();
-
 	}
 
 	public void tick() {
-
-		// calle.verificarColisionesLaika(laika);
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
-		System.out.println("x = " + this.laika.getX());
-		System.out.println("y = " + this.laika.getY());
+		Utilidades.escucharTecla(entorno, laika);
+		Utilidades.coordenadas(laika);
+	}
 
+	@SuppressWarnings("unused")
+
+	public static void main(String[] args) {
+		Juego juego = new Juego();
+	}
+}
+
+class Utilidades {
+
+	static void escucharTecla(Entorno entorno, Laika laika) {
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
 			laika.moverDerecha();
 		}
@@ -44,12 +48,11 @@ public class Juego extends InterfaceJuego {
 		if (entorno.estaPresionada(entorno.TECLA_ABAJO) || entorno.estaPresionada('k')) {
 			laika.moverAbajo();
 		}
-
 	}
 
-	@SuppressWarnings("unused")
-
-	public static void main(String[] args) {
-		Juego juego = new Juego();
+	static void coordenadas(Laika laika) {
+		System.out.println("x = " + laika.getX());
+		System.out.println("y = " + laika.getY());
 	}
+
 }

@@ -21,7 +21,6 @@ public class Laika {
 
 	// Constructor de Laika
 	public Laika() {
-		// Puedes inicializar propiedades específicas de Laika aquí si es necesario.
 	}
 
 	public void dibujarse(Entorno e) {
@@ -43,8 +42,6 @@ public class Laika {
 	public void moverIzquierda() {
 		x -= velocidad;
 	}
-
-	// Método para verificar colisiones con manzanas
 
 	public boolean colisionBola() {
 		return false;
