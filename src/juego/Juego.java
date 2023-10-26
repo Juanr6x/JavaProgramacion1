@@ -25,10 +25,7 @@ public class Juego extends InterfaceJuego {
 		this.laika.dibujarse(entorno);
 
 		// Mueve a Laika
-		Utilidades.escucharTecla(entorno, laika);
-
-		// Imprime coordenadas de Laika para debug
-		Utilidades.imprimirCoordenadas(laika);
+		this.laika.mover(entorno);
 
 	}
 

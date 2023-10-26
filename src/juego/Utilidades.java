@@ -1,26 +1,9 @@
 package juego;
 
 import java.awt.Point;
-import entorno.Entorno;
+// import entorno.Entorno;
 
 abstract class Utilidades {
-
-	// Funciona a modo de eventos de teclado
-	// y ejecuta acciones de Laika
-	static void escucharTecla(Entorno entorno, Laika laika) {
-		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
-			laika.moverDerecha();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
-			laika.moverIzquierda();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_ARRIBA) || entorno.estaPresionada('k')) {
-			laika.moverArriba();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_ABAJO) || entorno.estaPresionada('k')) {
-			laika.moverAbajo();
-		}
-	}
 
 	// Imprime las coordenadas de Laika en consola, para debug
 	static void imprimirCoordenadas(Laika laika) {
@@ -62,4 +45,5 @@ abstract class Utilidades {
 
 		return coordenadas;
 	}
+
 }
