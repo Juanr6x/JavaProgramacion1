@@ -26,11 +26,11 @@ public class Juego extends InterfaceJuego {
 
 	public void tick() {
 
-		calle.verificarColisionesLaika(laika);
-		this.laika.dibujarse(entorno);
+		// calle.verificarColisionesLaika(laika);
 		this.calle.dibujarse(entorno);
-		System.out.println(this.laika.getX());
-		System.out.println(this.laika.getY());
+		this.laika.dibujarse(entorno);
+		System.out.println("x = " + this.laika.getX());
+		System.out.println("y = " + this.laika.getY());
 
 		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
 			laika.moverDerecha();
