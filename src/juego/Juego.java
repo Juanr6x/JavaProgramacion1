@@ -1,5 +1,6 @@
-
 package juego;
+
+import java.awt.Point;
 
 import entorno.Entorno;
 import entorno.InterfaceJuego;
@@ -23,7 +24,7 @@ public class Juego extends InterfaceJuego {
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
 		Utilidades.escucharTecla(entorno, laika);
-		Utilidades.coordenadas(laika);
+		Utilidades.imprimirCoordenadas(laika);
 	}
 
 	@SuppressWarnings("unused")
@@ -31,28 +32,4 @@ public class Juego extends InterfaceJuego {
 	public static void main(String[] args) {
 		Juego juego = new Juego();
 	}
-}
-
-class Utilidades {
-
-	static void escucharTecla(Entorno entorno, Laika laika) {
-		if (entorno.estaPresionada(entorno.TECLA_DERECHA) || entorno.estaPresionada('l')) {
-			laika.moverDerecha();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_IZQUIERDA) || entorno.estaPresionada('h')) {
-			laika.moverIzquierda();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_ARRIBA) || entorno.estaPresionada('k')) {
-			laika.moverArriba();
-		}
-		if (entorno.estaPresionada(entorno.TECLA_ABAJO) || entorno.estaPresionada('k')) {
-			laika.moverAbajo();
-		}
-	}
-
-	static void coordenadas(Laika laika) {
-		System.out.println("x = " + laika.getX());
-		System.out.println("y = " + laika.getY());
-	}
-
 }
