@@ -38,7 +38,7 @@ public class Juego extends InterfaceJuego {
 		// Dibuja en pantalla
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
-
+		//this.laika.setCuadras(this.calle.getCuadras());
 		// Mueve a Laika
 		this.laika.mover(entorno);
 		//Recorre la cantidad de Plantas y si hay alguno en null lo dibuja en cierto tiempo.
@@ -64,8 +64,25 @@ public class Juego extends InterfaceJuego {
 	//					this.reaparicionKyojines=150;
 	//				}
 				}
-
+				for(int planta = 0 ; planta < this.planta.length; planta++){
+					this.planta[planta].moverDerecha();
+				
+					//this.planta[3].moverArriba();
+				}
+				
+				for(int auto = 0 ; auto < this.auto.length; auto++){
+					this.auto[auto].moverDe();
+					
+					//this.auto[auto].moverArriba();
+				}
+				
+				
+				//this.laika.colisionCuadra(laika, this.calle.getCuadras());
+			
+				
+				
 	}
+	
 
 	@SuppressWarnings("unused")
 
@@ -77,7 +94,8 @@ public class Juego extends InterfaceJuego {
 				Random random = new Random();
 				int xRandom = random.nextInt(750);
 				int yRandom = random.nextInt(550);
-			
+				
+				 
 				return new Planta(xRandom,yRandom,30,30);	
 			}
 			//crea un nuevo enemigo en posicion random
