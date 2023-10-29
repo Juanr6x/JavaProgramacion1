@@ -21,18 +21,14 @@ public class Calle {
 		for (int i = 0; i < plantas.length; i++) {
 			Random random = new Random();
 			Point coordenada = new Point(0, 0);
-			int RandomLadoAparicion = random.nextInt(3);
+			int RandomLadoAparicion = random.nextInt(1,4);
 			cordenadaenemigos =  Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
-			for (int x = 0; x < cordenadaenemigos.length; x++) {
+			for (int x = 1; x < cordenadaenemigos.length+ 1; x++) {
 				if(x==RandomLadoAparicion)
-				 coordenada =  cordenadaenemigos[x];
+				 coordenada =  cordenadaenemigos[random.nextInt(4)];
 			}
-				
-			
-			
-			   
-
 			plantas[i] = new Planta(coordenada.x, coordenada.y, 30, 30,RandomLadoAparicion);
+
 		}
 
 		// Crea los autos
