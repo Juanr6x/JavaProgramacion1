@@ -35,12 +35,6 @@ public class Calle {
 
 	}
 
-	public void moverAutos() {
-		for (Auto auto : autos) {
-			auto.moverDerecha();
-		}
-	}
-
 	public void moverPlantas() {
 		for (Planta plantas : plantas) {
 			plantas.moverDerecha();

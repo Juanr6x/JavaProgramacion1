@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Image;
+import java.util.Random;
+
 import entorno.Entorno;
 import entorno.Herramientas;
 
@@ -12,6 +14,7 @@ public class Planta {
 	private double velocidad = 1.5;
 	private double escala = 0.08;
 	private Image imagen;
+	private static Planta[] plantas;
 
 	public Planta(int x, int y, int alto, int ancho) {
 		this.x = x;
@@ -21,14 +24,31 @@ public class Planta {
 		this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
 	}
 
+	public static Planta[] generar(int cantidad) {
+		plantas = new Planta[cantidad];
+		for (int i = 0; i < cantidad; i++) {
+			Random random = new Random();
+			int xRandom = random.nextInt(750);
+			int yRandom = random.nextInt(550);
+			plantas[i] = new Planta(xRandom, yRandom, 30, 30);
+		}
+		return plantas;
+	}
+
 	public static void moverPlantas(Planta[] plantas) {
 		for (Planta planta : plantas) {
 			planta.moverDerecha();
 		}
 	}
 
-	public void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagen, this.x, this.y, 0, escala);
+	public static void dibujar(Entorno entorno, Planta[] plantas) {
+		for (Planta planta : plantas) {
+			entorno.dibujarImagen(planta.imagen, planta.x, planta.y, 0, planta.escala);
+		}
+	}
+
+	public void dibujar(Entorno e) {
+		e.dibujarImagen(this.imagen, this.x, this.y, 0, this.escala);
 	}
 
 	public void moverDerecha() {

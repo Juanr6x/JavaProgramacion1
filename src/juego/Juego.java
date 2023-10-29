@@ -11,15 +11,18 @@ public class Juego extends InterfaceJuego {
 	private int height = 600;
 	private Calle calle;
 	private Laika laika = new Laika();
-	private Planta[] plantas;
 	private Auto[] autos;
+	private Planta[] plantas;
 
 	Juego() {
 		// Inicio del juego
 		this.entorno = new Entorno(this, "Attack on Titan, Final Season - Grupo ... - v1", width, height);
+
+		// toda la logica del juego
+		// está dentro de la clase Calle
 		this.calle = new Calle();
-		this.plantas = calle.getPlantas();
-		this.autos = calle.getAutos();
+		this.autos = this.calle.getAutos();
+		this.plantas = this.calle.getPlantas();
 		this.entorno.iniciar();
 	}
 
@@ -28,10 +31,10 @@ public class Juego extends InterfaceJuego {
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
 
-		// Mueve a Laika-Planta-Auto
+		// Mueve a Laika
 		this.laika.mover(entorno, this.calle.getCuadras());
-		Planta.moverPlantas(this.plantas);
-		Auto.moverAutos(this.autos);
+		Auto.moverAutos(autos);
+		Planta.moverPlantas(plantas);
 	}
 
 	@SuppressWarnings("unused")
