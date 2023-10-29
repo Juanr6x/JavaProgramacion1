@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.Random;
 
 import entorno.Entorno;
@@ -16,6 +17,8 @@ public class Planta {
 	private Image imagen;
 	private static Planta[] plantas;
 	private int direccion;
+	private Hitbox hitbox;
+	private boolean estaVivo = true;
 
 	public Planta(int x, int y, int height, int width, int direccion) {
 		this.x = x;
@@ -26,8 +29,8 @@ public class Planta {
 			this.imagen = Herramientas.cargarImagen("imagenes/planta-izquierda.png");
 		else
 			this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
-
 		this.direccion = direccion;
+		this.hitbox = new Hitbox(estaVivo, this.x, this.y, this.width, this.height);
 	}
 
 	public static Planta[] generar(int cantidad) {
@@ -94,9 +97,11 @@ public class Planta {
 		}
 	}
 
-	public void atacar(Entorno e, Laika laika) {
-		if (Utilidades.colision(this, laika)) {
-			laika.morir();
+	public static void atacar(Entorno e, Planta[] plantas, Laika laika) {
+		for (Planta planta : plantas) {
+			if (Utilidades.colision(planta, laika)) {
+				laika.morir();
+			}
 		}
 
 	}
@@ -146,6 +151,10 @@ public class Planta {
 
 	public void girarIzquierda() {
 		this.imagen = Herramientas.cargarImagen("imagenes/planta-izquierda.png");
+	}
+
+	public Rectangle getHitbox() {
+		return this.hitbox.getBox();
 	}
 
 	public int getX() {

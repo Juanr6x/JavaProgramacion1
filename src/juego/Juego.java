@@ -33,14 +33,20 @@ public class Juego extends InterfaceJuego {
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
 
-		// Mueve a Laika
-		this.laika.mover(entorno, this.calle.getCuadras());
-		this.laika.isViva();
+		// comprueba si laika se encuentra viva
+		if (!laika.isViva()) {
+			// TODO
+			// Utilidades.gameOver()
+			System.out.println("Game Over");
+		} else {
+			// Mueve a Laika
+			this.laika.mover(entorno, this.calle.getCuadras());
+			Planta.atacar(this.entorno, this.plantas, this.laika);
+		}
 		Auto.moverAutos(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
-		for (Planta planta : plantas) {
-			planta.atacar(this.entorno, this.laika);
-		}
+
+		// Serian como los mordiscos, si se encuentran con laika, laika muere.
 	}
 
 	@SuppressWarnings("unused")

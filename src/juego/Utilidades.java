@@ -39,11 +39,9 @@ abstract class Utilidades {
 		return true;
 	}
 
-	public static boolean colision(Planta planta, Laika laika) {
-		Rectangle rec1 = new Rectangle(planta.getX(), planta.getY(), planta.getWidth(), planta.getHeight());
-		Rectangle rec2 = new Rectangle(laika.getX(), laika.getY(), laika.getWidth(), laika.getHeight());
-
-		if (rec1.intersects(rec2)) {
+	public static boolean colision(Planta obj1, Laika obj2) {
+		Rectangle rec1 = new Rectangle(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
+		if (rec1.intersects(obj2.getHitbox())) {
 			return true;
 		}
 		return false;

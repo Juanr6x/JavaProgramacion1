@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -13,21 +14,21 @@ public class Laika {
 	private int velocidad = 3;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
 	private Hitbox hitbox;
-	private boolean estaViva = true;
+	private boolean estaVivo = true;
 
 	// Constructor de Laika
 	public Laika() {
 		this.width = (int) (img.getWidth(null) * escala);
 		this.height = (int) (img.getHeight(null) * escala);
-		this.hitbox = new Hitbox(estaViva, this.x, this.y, this.width, this.height);
+		this.hitbox = new Hitbox(estaVivo, this.x, this.y, this.width, this.height);
 	}
 
 	public boolean isViva() {
-		return estaViva;
+		return estaVivo;
 	}
 
 	public void morir() {
-		this.estaViva = false;
+		this.estaVivo = false;
 		this.velocidad = 0;
 		System.out.println("laika murio");
 	}
@@ -86,8 +87,8 @@ public class Laika {
 		return false;
 	}
 
-	public Hitbox getHitbox() {
-		return hitbox;
+	public Rectangle getHitbox() {
+		return hitbox.getBox();
 	}
 
 	public int getX() {
