@@ -96,29 +96,34 @@ abstract class Utilidades {
 		return coordenadas;
 	}
 
-	static Point[] coordenadaAparicionEnemigo(int direccion) {
-		Point[] listCordenadas = new Point[3];
+static Point[] coordenadaAparicionEnemigo(int direccion) {
+		Point[] listCordenadas = new Point[4];
 		
 
-		if (direccion == 0) {
-			listCordenadas[0] = new Point(10, 10);
-			listCordenadas[1] = new Point(10, 400);
-			listCordenadas[2] = new Point(10, 700);
-		}
 		if (direccion == 1) {
-			listCordenadas[0] = new Point(10, 10);
-			listCordenadas[1] = new Point(400, 10);
-			listCordenadas[2] = new Point(700, 10);
+			listCordenadas[0] = new Point(30, 30);
+			listCordenadas[1] = new Point(260, 30);
+			listCordenadas[2] = new Point(510, 30);
+			listCordenadas[3] = new Point(760, 30);
+			
 		}
 		if (direccion == 2) {
-			listCordenadas[0] = new Point(10, 10);
-			listCordenadas[1] = new Point(10, 400);
-			listCordenadas[2] = new Point(10, 700);
+			listCordenadas[0] = new Point(30, 760);
+			listCordenadas[1] = new Point(260, 760);
+			listCordenadas[2] = new Point(510, 760);
+			listCordenadas[3] = new Point(760, 760);
 		}
 		if (direccion == 3) {
-			listCordenadas[0] = new Point(10, 10);
-			listCordenadas[1] = new Point(400, 10);
-			listCordenadas[2] = new Point(700, 10);
+			listCordenadas[0] = new Point(30, 30);
+			listCordenadas[1] = new Point(30, 300);
+			listCordenadas[2] = new Point(30, 570);
+			listCordenadas[3] = new Point(30, 300);
+		}
+		if (direccion == 4) {
+			listCordenadas[0] = new Point(760, 30);
+			listCordenadas[1] = new Point(760, 300);
+			listCordenadas[2] = new Point(760, 570);
+			listCordenadas[3] = new Point(760, 760);
 		}
 		return listCordenadas;
 	}
