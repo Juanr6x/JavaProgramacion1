@@ -7,8 +7,8 @@ import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
 	private Entorno entorno;
-	private int width = 1200;
-	private int height = 300;
+	private int width = 800;
+	private int height = 600;
 	private Calle calle;
 	private Laika laika = new Laika();
 	private Auto[] autos;
