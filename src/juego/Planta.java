@@ -22,7 +22,11 @@ public class Planta {
 		this.y = y;
 		this.height = (int) (height * escala);
 		this.width = (int) (width * escala);
-		this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
+		if(direccion==1)
+			this.imagen =  Herramientas.cargarImagen("imagenes/planta-izquierda.png");
+		else
+			this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
+		
 		this.direccion = direccion;
 	}
 
