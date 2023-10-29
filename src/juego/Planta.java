@@ -51,7 +51,7 @@ public class Planta {
 			if (planta.direccion == 2) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
 					if (planta.y <= 0)
-						return;
+						planta.direccion = 1;
 					planta.y -= planta.velocidad;
 				} else {
 					planta.direccion = 1;
@@ -62,7 +62,7 @@ public class Planta {
 
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
 					if (planta.y >= 600)
-						return;
+						planta.direccion = 2;
 					planta.y += planta.velocidad;
 				} else {
 					planta.direccion = 2;
@@ -74,7 +74,7 @@ public class Planta {
 
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
 					if (planta.x >= 800)
-						return;
+						planta.direccion = 4;
 					planta.x += planta.velocidad;
 				} else {
 					planta.direccion = 4;
@@ -84,7 +84,7 @@ public class Planta {
 			else if (planta.direccion == 4) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
 					if (planta.x <= 0)
-						return;
+						planta.direccion = 3;
 					planta.x -= planta.velocidad;
 				} else {
 					planta.direccion = 3;
