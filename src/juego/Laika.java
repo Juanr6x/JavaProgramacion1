@@ -26,11 +26,16 @@ public class Laika {
 		return estaViva;
 	}
 
+	public void morir() {
+		this.estaViva = false;
+		this.velocidad = 0;
+		System.out.println("laika murio");
+	}
+
 	// choca un auto, golpea una planta , o la bola de fuego
 
 	public void dibujarse(Entorno e) {
 		e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
-		hitbox.dibujar(e);
 	}
 
 	public void mover(Entorno e, Cuadra[] cuadras) {
@@ -64,6 +69,8 @@ public class Laika {
 				return;
 			x -= velocidad;
 		}
+		hitbox.mover(x, y);
+
 	}
 
 	// cambio de imagen de laika dependiendo de la direccion

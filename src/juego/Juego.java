@@ -7,7 +7,6 @@ import entorno.InterfaceJuego;
 
 public class Juego extends InterfaceJuego {
 	private Entorno entorno;
-	// adasdsad
 	private int width = 800;
 	private int height = 600;
 	private Calle calle;
@@ -39,6 +38,9 @@ public class Juego extends InterfaceJuego {
 		this.laika.isViva();
 		Auto.moverAutos(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
+		for (Planta planta : plantas) {
+			planta.atacar(this.entorno, this.laika);
+		}
 	}
 
 	@SuppressWarnings("unused")

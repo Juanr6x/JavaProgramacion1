@@ -39,6 +39,16 @@ abstract class Utilidades {
 		return true;
 	}
 
+	public static boolean colision(Planta planta, Laika laika) {
+		Rectangle rec1 = new Rectangle(planta.getX(), planta.getY(), planta.getWidth(), planta.getHeight());
+		Rectangle rec2 = new Rectangle(laika.getX(), laika.getY(), laika.getWidth(), laika.getHeight());
+
+		if (rec1.intersects(rec2)) {
+			return true;
+		}
+		return false;
+	}
+
 	public static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Planta obj2, char direccion) {
 		int agregarX = 0, agregarY = 0;
 

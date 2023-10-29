@@ -43,10 +43,6 @@ public class Planta {
 
 	public static void moverPlantas(Entorno e, Cuadra[] cuadras, Planta[] plantas) {
 		for (Planta planta : plantas) {
-			// 1 ---> arriba
-			// 2 ---> abajo
-			// 3 ---> derecha
-			// 4 ---> izquierda
 
 			if (planta.direccion == 2) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
@@ -96,6 +92,13 @@ public class Planta {
 
 			}
 		}
+	}
+
+	public void atacar(Entorno e, Laika laika) {
+		if (Utilidades.colision(this, laika)) {
+			laika.morir();
+		}
+
 	}
 
 	public static void dibujar(Entorno entorno, Planta[] plantas) {
