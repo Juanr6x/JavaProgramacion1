@@ -15,13 +15,15 @@ public class Planta {
 	private double escala = 0.08;
 	private Image imagen;
 	private static Planta[] plantas;
+	private int direccion;
 
-	public Planta(int x, int y, int alto, int ancho) {
+	public Planta(int x, int y, int alto, int ancho,int  direccion) {
 		this.x = x;
 		this.y = y;
 		this.alto = alto;
 		this.ancho = ancho;
 		this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
+		this.direccion = direccion;
 	}
 
 	public static Planta[] generar(int cantidad) {
@@ -30,14 +32,26 @@ public class Planta {
 			Random random = new Random();
 			int xRandom = random.nextInt(750);
 			int yRandom = random.nextInt(550);
-			plantas[i] = new Planta(xRandom, yRandom, 30, 30);
+			plantas[i] = new Planta(xRandom, yRandom, 30, 30,1);
 		}
 		return plantas;
 	}
 
 	public static void moverPlantas(Planta[] plantas) {
-		for (Planta planta : plantas) {
-			planta.moverDerecha();
+		for (Planta planta : plantas) {	
+			if(planta.direccion == 0)
+				planta.moverDerecha();
+
+			if(planta.direccion == 1)
+				planta.moverIzquierda();
+				
+			if(planta.direccion == 2)
+				planta.moverArriba();
+
+			if(planta.direccion == 3)
+				planta.moverAbajo();
+			
+			
 		}
 	}
 

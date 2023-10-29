@@ -44,5 +44,36 @@ abstract class Utilidades {
 
 		return coordenadas;
 	}
+	
+	static Point coordenadaAparicionEnemigo(int numeroDeCalle) {
+		Point coordenadas = new Point(0, 0);
+
+		if (numeroDeCalle == 1) {
+			coordenadas.x = 150;
+			coordenadas.y = 160;
+		}
+		if (numeroDeCalle == 2) {
+			coordenadas.x = 390;
+			coordenadas.y = 160;
+		}
+		if (numeroDeCalle == 3) {
+			coordenadas.x = 635;
+			coordenadas.y = 160;
+		}
+		if (numeroDeCalle == 4) {
+			coordenadas.x = 150;
+			coordenadas.y = 440;
+		}
+		if (numeroDeCalle == 5) {
+			coordenadas.x = 390;
+			coordenadas.y = 440;
+		}
+		if (numeroDeCalle == 6) {
+			coordenadas.x = 635;
+			coordenadas.y = 440;
+		}
+
+		return coordenadas;
+	}
 
 }
