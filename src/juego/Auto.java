@@ -6,20 +6,20 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Auto {
-	private double x;
-	private double y;
-	private double alto;
-	private double ancho;
-	private double velocidad = 1.5;
+	private int x;
+	private int y;
+	private int height;
+	private int width;
+	private int velocidad = 2;
 	private double escala = 0.30;
-	private Image imagen;
+	private Image img;
 
-	public Auto(int x, int y, int alto, int ancho) {
+	public Auto(int x, int y, int height, int width) {
 		this.x = x;
 		this.y = y;
-		this.alto = alto;
-		this.ancho = ancho;
-		this.imagen = Herramientas.cargarImagen("imagenes/auto-derecha.png");
+		this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
+		this.height = (int) (img.getHeight(null) * escala);
+		this.width = (int) (img.getWidth(null) * escala);
 	}
 
 	public static void moverAutos(Auto[] autos) {
@@ -28,8 +28,16 @@ public class Auto {
 		}
 	}
 
+	public static void atacar(Entorno e, Auto[] autos, Laika laika) {
+		for (Auto auto : autos) {
+			if (Utilidades.colision(auto, laika)) {
+				laika.morir();
+			}
+		}
+	}
+
 	public void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagen, this.x, this.y, 0, escala);
+		entorno.dibujarImagen(img, this.x, this.y, 0, escala);
 	}
 
 	public void moverDerecha() {
@@ -48,23 +56,23 @@ public class Auto {
 		this.y = this.y + this.velocidad;
 	}
 
-	public double getX() {
+	public int getX() {
 		return this.x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return this.y;
 	}
 
-	public double getAlto() {
-		return this.alto;
+	public int getHeight() {
+		return this.height;
 	}
 
-	public double getAncho() {
-		return this.ancho;
+	public int getWidth() {
+		return this.width;
 	}
 
-	public double getVelocidad() {
+	public int getVelocidad() {
 		return this.velocidad;
 	}
 

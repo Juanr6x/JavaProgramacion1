@@ -58,7 +58,6 @@ public class Planta {
 			}
 
 			else if (planta.direccion == 1) {
-
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
 					if (planta.y >= 600)
 						planta.direccion = 2;
@@ -70,7 +69,6 @@ public class Planta {
 			}
 
 			else if (planta.direccion == 3) {
-
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
 					if (planta.x >= 800) {
 						planta.direccion = 4;
@@ -92,7 +90,6 @@ public class Planta {
 				} else {
 					planta.direccion = 3;
 				}
-
 			}
 		}
 	}
@@ -103,7 +100,6 @@ public class Planta {
 				laika.morir();
 			}
 		}
-
 	}
 
 	public static void dibujar(Entorno entorno, Planta[] plantas) {
@@ -116,31 +112,7 @@ public class Planta {
 		e.dibujarImagen(this.imagen, this.x, this.y, 0, this.escala);
 	}
 
-	public void moverDerecha() {
-		this.x = (int) (this.x + this.velocidad);
-	}
-
-	void moverIzquierda() {
-		this.x = (int) (this.x - this.velocidad);
-	}
-
-	void moverArriba() {
-		this.y = (int) (this.y - this.velocidad);
-	}
-
-	void moverAbajo() {
-		this.y = (int) (this.y + this.velocidad);
-	}
-
 	// TODO
-	// private boolean colisionEntorno() {
-	// return false;
-	// }
-
-	// private boolean colisionCuadra() {
-	// return false;
-	// }
-
 	// private boolean colisionRayo() {
 	// return false;
 	// }

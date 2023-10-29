@@ -39,14 +39,6 @@ abstract class Utilidades {
 		return true;
 	}
 
-	public static boolean colision(Planta obj1, Laika obj2) {
-		Rectangle rec1 = new Rectangle(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
-		if (rec1.intersects(obj2.getHitbox())) {
-			return true;
-		}
-		return false;
-	}
-
 	public static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Planta obj2, char direccion) {
 		int agregarX = 0, agregarY = 0;
 
@@ -69,6 +61,22 @@ abstract class Utilidades {
 			}
 		}
 		return true;
+	}
+
+	public static boolean colision(Planta obj1, Laika obj2) {
+		Rectangle rec1 = new Rectangle(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
+		if (rec1.intersects(obj2.getHitbox())) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean colision(Auto obj1, Laika obj2) {
+		Rectangle rec1 = new Rectangle(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
+		if (rec1.intersects(obj2.getHitbox())) {
+			return true;
+		}
+		return false;
 	}
 
 	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,

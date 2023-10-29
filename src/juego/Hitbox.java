@@ -1,7 +1,6 @@
 package juego;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.Rectangle;
 
 import entorno.Entorno;

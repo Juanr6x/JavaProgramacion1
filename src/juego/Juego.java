@@ -22,6 +22,7 @@ public class Juego extends InterfaceJuego {
 		// toda la logica del juego
 		// está dentro de la clase Calle
 		this.calle = new Calle();
+
 		this.cuadras = this.calle.getCuadras();
 		this.autos = this.calle.getAutos();
 		this.plantas = this.calle.getPlantas();
@@ -41,12 +42,13 @@ public class Juego extends InterfaceJuego {
 		} else {
 			// Mueve a Laika
 			this.laika.mover(entorno, this.calle.getCuadras());
+
+			// Serian como los mordiscos, si se encuentran con laika, laika muere.
 			Planta.atacar(this.entorno, this.plantas, this.laika);
 		}
 		Auto.moverAutos(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
 
-		// Serian como los mordiscos, si se encuentran con laika, laika muere.
 	}
 
 	@SuppressWarnings("unused")
