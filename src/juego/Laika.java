@@ -39,31 +39,56 @@ public class Laika {
 
 	// Movimientos de Laika
 
-	public void mover(Entorno e, Cuadra[] cuadras) {
-		for (Cuadra cuadra : cuadras) {
+	public boolean sePuedeMover(Entorno e, Cuadra[] cuadras, String direccion) {
+		int agregarX = 0, agregarY = 0;
 
+		if (direccion.equals("arriba"))
+			agregarY -= velocidad;
+		if (direccion.equals("abajo"))
+			agregarY += velocidad;
+		if (direccion.equals("derecha"))
+			agregarX += velocidad;
+		if (direccion.equals("izquierda"))
+			agregarX -= velocidad;
+
+		for (Cuadra cuadra : cuadras) {
 			Rectangle rec = new Rectangle(cuadra.getX(), cuadra.getY(), cuadra.getWidth(), cuadra.getHeight());
-			Rectangle recLaika = new Rectangle(this.getX(), this.getY(), this.width, this.height);
-			e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
+			Rectangle recLaika = new Rectangle(this.getX() + agregarX, this.getY() + agregarY + this.velocidad, this.width,
+					this.height);
+
+			System.out.println("x de laika: " + this.getX() + " y de laika: " + this.getY());
+			System.out
+					.println("TESTING - x de laika: " + (this.getX() + agregarX) + " y de laika: " + (this.getY() + agregarY));
+
 			if (rec.intersects(recLaika)) {
-				System.out.println("choca laika");
-				this.x -= velocidad;
-				this.y -= velocidad;
-				return;
+				return false;
 			}
 		}
+		return true;
+	}
+
+	public void mover(Entorno e, Cuadra[] cuadras) {
+
+		String direccion = "ninguna";
+
 		if (e.estaPresionada(e.TECLA_ARRIBA))
-			// if(!colisionCuadra())
-			moverArriba(e);
+			direccion = "arriba";
 		if (e.estaPresionada(e.TECLA_ABAJO))
-			// if(!colisionCuadra())
-			moverAbajo(e);
+			direccion = "abajo";
 		if (e.estaPresionada(e.TECLA_DERECHA))
-			// if(!colisionCuadra())
-			moverDerecha(e);
+			direccion = "derecha";
 		if (e.estaPresionada(e.TECLA_IZQUIERDA))
-			// if(!colisionCuadra())
+			direccion = "izquierda";
+
+		if (direccion.equals("arriba") && sePuedeMover(e, cuadras, "arriba"))
+			moverArriba(e);
+		if (direccion.equals("abajo") && sePuedeMover(e, cuadras, "abajo"))
+			moverAbajo(e);
+		if (direccion.equals("derecha") && sePuedeMover(e, cuadras, "derecha"))
+			moverDerecha(e);
+		if (direccion.equals("izquierda") && sePuedeMover(e, cuadras, "izquierda"))
 			moverIzquierda(e);
+
 	}
 
 	public void moverArriba(Entorno e) {
