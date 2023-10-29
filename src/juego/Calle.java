@@ -3,20 +3,60 @@ package juego;
 import entorno.Entorno;
 import entorno.Herramientas;
 import java.awt.Image;
+import java.util.Random;
 
 public class Calle {
 	private Cuadra[] cuadras = new Cuadra[6];
+	private Planta[] plantas = new Planta[4];
+	private Auto[] autos = new Auto[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
 
 	public Calle() {
+		// Crea las manzanas
 		for (int i = 0; i < cuadras.length; i++) {
-			// Crea las manzanas
 			cuadras[i] = new Cuadra(i + 1);
+		}
+
+		// Crea las plantas
+		for (int i = 0; i < plantas.length; i++) {
+			Random random = new Random();
+			int xRandom = random.nextInt(750);
+			int yRandom = random.nextInt(550);
+			plantas[i] = new Planta(xRandom, yRandom, 30, 30);
+		}
+
+		// Crea los autos
+		for (int i = 0; i < plantas.length; i++) {
+			Random random = new Random();
+			int xRandom = random.nextInt(750);
+			int yRandom = random.nextInt(550);
+			autos[i] = new Auto(xRandom, yRandom, 30, 30);
+		}
+
+	}
+
+	public void moverAutos() {
+		for (Auto auto : autos) {
+			auto.moverDerecha();
+		}
+	}
+
+	public void moverPlantas() {
+		for (Planta plantas : plantas) {
+			plantas.moverDerecha();
 		}
 	}
 
 	public Cuadra[] getCuadras() {
 		return cuadras;
+	}
+
+	public Planta[] getPlantas() {
+		return plantas;
+	}
+
+	public Auto[] getAutos() {
+		return autos;
 	}
 
 	public void dibujarse(Entorno e) {
@@ -25,6 +65,16 @@ public class Calle {
 		// Dibuja las manzanas
 		for (Cuadra cuadra : cuadras) {
 			cuadra.dibujar(e);
+		}
+
+		// Dibuja las plantas
+		for (Planta planta : plantas) {
+			planta.dibujar(e);
+		}
+
+		// Dibuja los autos
+		for (Auto auto : autos) {
+			auto.dibujar(e);
 		}
 	}
 

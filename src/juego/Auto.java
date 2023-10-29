@@ -12,44 +12,59 @@ public class Auto {
 	private double velocidad = 1.5;
 	private double escala = 0.30;
 	private Image imagen;
-	
-	public Auto(int x, int y,int alto, int ancho) {
+
+	public Auto(int x, int y, int alto, int ancho) {
 		this.x = x;
 		this.y = y;
 		this.alto = alto;
 		this.ancho = ancho;
-		this.imagen = Herramientas.cargarImagen("imagenes/auto-derecha.png");	
+		this.imagen = Herramientas.cargarImagen("imagenes/auto-derecha.png");
 	}
-	public double getX() {
-		return this.x;
+
+	public static void moverAutos(Auto[] autos) {
+		for (Auto auto : autos) {
+			auto.moverDerecha();
+		}
 	}
-	public double getY() {
-		return this.y;
+
+	public void dibujar(Entorno entorno) {
+		entorno.dibujarImagen(imagen, this.x, this.y, 0, escala);
 	}
-	public double getAlto() {
-		return this.alto;
-	}
-	public double getAncho() {
-		return this.ancho;
-	}
-	public double getVelocidad() {
-		return this.velocidad;
-	}
-	void dibujar(Entorno entorno) {
-		entorno.dibujarImagen(imagen, this.x, this.y, 0,escala);
-	}
-	void moverDe() {
+
+	public void moverDerecha() {
 		this.x = this.x + this.velocidad;
 	}
-	void moverIz() {
+
+	public void moverIzquierda() {
 		this.x = this.x - this.velocidad;
 	}
-	void moverAr() {
+
+	public void moverArriba() {
 		this.y = this.y - this.velocidad;
 	}
-	void moverAb() {
+
+	public void moverAbajo() {
 		this.y = this.y + this.velocidad;
 	}
 
+	public double getX() {
+		return this.x;
+	}
+
+	public double getY() {
+		return this.y;
+	}
+
+	public double getAlto() {
+		return this.alto;
+	}
+
+	public double getAncho() {
+		return this.ancho;
+	}
+
+	public double getVelocidad() {
+		return this.velocidad;
+	}
 
 }

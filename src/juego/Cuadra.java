@@ -1,11 +1,7 @@
 package juego;
 
 import entorno.Herramientas;
-
-import java.awt.Color;
 import java.awt.Image;
-import java.awt.Rectangle;
-
 import entorno.Entorno;
 
 public class Cuadra {
@@ -29,11 +25,6 @@ public class Cuadra {
 	}
 
 	public void dibujar(Entorno e) {
-		// e.dibujarImagen(this.manzana, this.x, this.y, 0, this.escala);
-		// e.dibujarRectangulo(x, y, this.width, this.height, 0, Color.RED);
-
-		// Calcular las coordenadas (0,0)
-
 		e.dibujarImagenConCentro(cuadra, x, y, 0, 0, 0, this.escala);
 	}
 

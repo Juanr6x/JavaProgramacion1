@@ -1,7 +1,6 @@
 package juego;
 
 import java.awt.Point;
-// import entorno.Entorno;
 
 abstract class Utilidades {
 

@@ -15,14 +15,6 @@ public class Laika {
 	private int velocidad = 3;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
 
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
 	// Constructor de Laika
 	public Laika() {
 		this.width = (int) (img.getWidth(null) * escala);
@@ -33,7 +25,7 @@ public class Laika {
 		e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
 	}
 
-	public boolean sePuedeMover(Entorno e, Cuadra[] cuadras, String direccion) {
+	public boolean sePuedeMover(Cuadra[] cuadras, String direccion) {
 		int agregarX = 0, agregarY = 0;
 
 		if (direccion.equals("arriba"))
@@ -57,27 +49,26 @@ public class Laika {
 	}
 
 	public void mover(Entorno e, Cuadra[] cuadras) {
-
-		if (e.estaPresionada(e.TECLA_ARRIBA) && sePuedeMover(e, cuadras, "arriba")) {
+		if (e.estaPresionada(e.TECLA_ARRIBA) && sePuedeMover(cuadras, "arriba")) {
 			if (y <= 0)
 				return;
 			y -= velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_ABAJO) && sePuedeMover(e, cuadras, "abajo")) {
+		if (e.estaPresionada(e.TECLA_ABAJO) && sePuedeMover(cuadras, "abajo")) {
 			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight())
 				return;
 			y += velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_DERECHA) && sePuedeMover(e, cuadras, "derecha")) {
+		if (e.estaPresionada(e.TECLA_DERECHA) && sePuedeMover(cuadras, "derecha")) {
 			girarDerecha();
 			if (x + img.getWidth(e) * escala * 1.90 >= e.getWidth())
 				return;
 			x += velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_IZQUIERDA) && sePuedeMover(e, cuadras, "izquierda")) {
+		if (e.estaPresionada(e.TECLA_IZQUIERDA) && sePuedeMover(cuadras, "izquierda")) {
 			girarIzquierda();
 			if (x < 0)
 				return;
@@ -96,6 +87,14 @@ public class Laika {
 
 	public boolean colisionBola() {
 		return false;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 	public int getHeight() {
