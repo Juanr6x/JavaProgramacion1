@@ -73,8 +73,10 @@ public class Planta {
 			else if (planta.direccion == 3) {
 
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
-					if (planta.x >= 800)
+					if (planta.x >= 800) {
 						planta.direccion = 4;
+						planta.girarIzquierda();
+					}
 					planta.x += planta.velocidad;
 				} else {
 					planta.direccion = 4;
@@ -83,8 +85,10 @@ public class Planta {
 
 			else if (planta.direccion == 4) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
-					if (planta.x <= 0)
+					if (planta.x <= 0) {
 						planta.direccion = 3;
+					    planta.girarDerecha();
+					    }
 					planta.x -= planta.velocidad;
 				} else {
 					planta.direccion = 3;
