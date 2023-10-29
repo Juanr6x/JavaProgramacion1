@@ -7,10 +7,20 @@ import entorno.Herramientas;
 public class Laika {
 	private int x, y;
 	// private boolean estaViva;
+	private double alto;
+	private double ancho;
 	private double escala = 0.037;
 	private int velocidad = 3;
-	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");
-
+	private Image img = Herramientas.cargarImagen("imagenes/Laika.png"); ;
+	private Cuadra cuadras[];
+	//public Laika(int x, int y,int alto, int ancho) {
+	//	this.x = x;
+	//	this.y = y;
+	//	this.alto = alto;
+	//	this.ancho = ancho;
+	//	this.img = Herramientas.cargarImagen("imagenes/Laika.png");
+	//}
+	
 	public int getX() {
 		return x;
 	}
@@ -25,20 +35,24 @@ public class Laika {
 	}
 
 	public void dibujarse(Entorno e) {
-		e.dibujarImagen(img, x + 30, y + 30, 0, escala);
+		e.dibujarImagen(img, x +30 , y + 30, 0, escala);
 	}
 
 	// Movimientos de Laika
 
 	public void mover(Entorno e) {
-		if (e.estaPresionada(e.TECLA_ARRIBA))
-			moverArriba(e);
+		if (e.estaPresionada(e.TECLA_ARRIBA)) 
+		//	if(!colisionCuadra())
+				moverArriba(e);
 		if (e.estaPresionada(e.TECLA_ABAJO))
-			moverAbajo(e);
-		if (e.estaPresionada(e.TECLA_DERECHA))
-			moverDerecha(e);
+		//	if(!colisionCuadra())
+				moverAbajo(e);
+		if (e.estaPresionada(e.TECLA_DERECHA)) 
+		//	if(!colisionCuadra())
+				moverDerecha(e);
 		if (e.estaPresionada(e.TECLA_IZQUIERDA))
-			moverIzquierda(e);
+		//	if(!colisionCuadra())
+				moverIzquierda(e);
 	}
 
 	public void moverArriba(Entorno e) {
@@ -80,7 +94,30 @@ public class Laika {
 	public boolean colisionBola() {
 		return false;
 	}
+//	public boolean colisionCuadra() {
+//			for (int i = 0; i < cuadras.length; i++) {
+//				if(this.x + this.ancho /2 > cuadras[i].getX() - cuadras[i].getAncho()/2 &&
+//						this.x - this.ancho/2<cuadras[i].getX() + cuadras[i].getAncho() /2 &&
+//						this.y + this.alto/2 > cuadras[i].getY() - cuadras[i].getAlto()/2 &&
+//						this.y -this.alto/2  < cuadras[i].getY() + cuadras[i].getAlto()/2
+//						)
+//						return true;
+//					}
+//					return false;
+		
+//	}
+	
+	public double getAlto() {
+		return this.alto;
+	}
+	public double getAncho() {
+		return this.ancho;
+	}
+	
 
+	//public void setCuadras( Cuadra cuadra[] ) {
+	//	cuadras = cuadra;
+	//}
 	// private boolean planta() {
 	// return false;
 	// }
