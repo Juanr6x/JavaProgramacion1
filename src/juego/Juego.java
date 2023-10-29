@@ -42,7 +42,6 @@ public class Juego extends InterfaceJuego {
 		// this.laika.setCuadras(this.calle.getCuadras());
 		// Mueve a Laika
 		this.laika.mover(entorno, this.calle.getCuadras());
-		this.laika.chocaConCuadra(this.entorno, this.calle.getCuadras());
 		// Recorre la cantidad de Plantas y si hay alguno en null lo dibuja en cierto
 		// tiempo.
 		for (int i = 0; i < planta.length; i++) {
