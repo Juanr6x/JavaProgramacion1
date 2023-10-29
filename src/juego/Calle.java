@@ -33,11 +33,11 @@ public class Calle {
 		}
 
 		// Crea los autos
-		for (int i = 0; i < plantas.length; i++) {
+		for (int i = 0; i < autos.length; i++) {
 			Random random = new Random();
 			int xRandom = random.nextInt(750);
 			int yRandom = 0;
-			autos[i] = new Auto(xRandom, yRandom, 1);
+			autos[i] = new Auto(xRandom, yRandom, 4);
 		}
 	}
 

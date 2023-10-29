@@ -47,6 +47,7 @@ public class Juego extends InterfaceJuego {
 			// Planta.atacar(this.entorno, this.plantas, this.laika);
 		}
 		Auto.moverAutos(entorno, cuadras, autos);
+		// Auto.avanzar(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
 
 	}

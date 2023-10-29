@@ -11,7 +11,7 @@ public class Auto {
 	private int height;
 	private int width;
 	private int velocidad = 2;
-	private int direccion = 1;
+	private Direccion direccion;
 	private double escala = 0.30;
 	private Image img;
 	// private int chocaste = 0;
@@ -19,6 +19,7 @@ public class Auto {
 	public Auto(int x, int y, int direccion) {
 		this.x = x;
 		this.y = y;
+		this.direccion = new Direccion("derecha");
 		this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
 		this.height = (int) (img.getHeight(null) * escala);
 		this.width = (int) (img.getWidth(null) * escala);
@@ -32,54 +33,61 @@ public class Auto {
 		}
 	}
 
+	public void avanzar() {
+
+		if (this.direccion.getDireccionString().equals("derecha")) {
+			this.x += this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("izquierda")) {
+			this.x -= this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("arriba")) {
+			this.y -= this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("abajo")) {
+			this.y += this.velocidad;
+		}
+
+	}
+
 	public static void moverAutos(Entorno e, Cuadra[] cuadras, Auto[] autos) {
 		for (Auto auto : autos) {
-			System.out.println("moviendo auto : " + auto.direccion);
-			if (auto.direccion == 2) {
+			if (auto.direccion.getDireccionString().equals("arriba")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ARRIBA)) {
 					if (auto.y <= 0)
-						auto.direccion = 1;
-					auto.y -= auto.velocidad;
-				} else {
-					auto.direccion = 1;
+						auto.direccion.invertirDireccion();
 				}
 			}
 
-			else if (auto.direccion == 1) {
+			else if (auto.direccion.getDireccionString().equals("abajo")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ABAJO)) {
 					if (auto.y >= 600)
-						auto.direccion = 2;
+						auto.direccion.invertirDireccion();
 					auto.y += auto.velocidad;
-				} else {
-					auto.direccion = 2;
 				}
 
 			}
 
-			else if (auto.direccion == 3) {
+			else if (auto.direccion.getDireccionString().equals("derecha")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_DERECHA)) {
 					if (auto.x >= 800) {
-						auto.direccion = 4;
+						auto.direccion.invertirDireccion();
 						auto.girar();
 					}
 					auto.x += auto.velocidad;
-				} else {
-					auto.direccion = 4;
 				}
 			}
 
-			else if (auto.direccion == 4) {
+			else if (auto.direccion.getDireccionString().equals("izquierda")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_IZQUIERDA)) {
 					if (auto.x <= 0) {
-						auto.direccion = 3;
+						auto.direccion.invertirDireccion();
 						auto.girar();
 					}
 					auto.x -= auto.velocidad;
-				} else {
-					auto.direccion = 3;
 				}
 			}
+			System.out.println("avanza a la " + auto.direccion.getDireccionString());
+			auto.avanzar();
 		}
+
 	}
 
 	public void dibujar(Entorno entorno) {
