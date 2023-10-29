@@ -84,7 +84,6 @@ public class Auto {
 					auto.x -= auto.velocidad;
 				}
 			}
-			System.out.println("avanza a la " + auto.direccion.getDireccionString());
 			auto.avanzar();
 		}
 
@@ -94,9 +93,12 @@ public class Auto {
 		entorno.dibujarImagenConCentro(img, this.x, this.y, 0, 0, 0, escala);
 	}
 
+	// TODO
 	public void girar() {
-		System.out.println(this.img.getSource());
-		// if (this.img.getSource().equals("imagenes/auto-izquierda.png"))
+		if (direccion.equals("izquierda")) {
+
+		}
+		// (this.img.getSource().equals("imagenes/auto-izquierda.png"))
 		// this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
 		// else
 		// this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
