@@ -96,35 +96,32 @@ abstract class Utilidades {
 		return coordenadas;
 	}
 
-	static Point coordenadaAparicionEnemigo(int numeroDeCalle) {
-		Point coordenadas = new Point(0, 0);
+	static Point[] coordenadaAparicionEnemigo(int direccion) {
+		Point[] listCordenadas = new Point[3];
+		
 
-		if (numeroDeCalle == 1) {
-			coordenadas.x = 150;
-			coordenadas.y = 160;
+		if (direccion == 0) {
+			listCordenadas[0] = new Point(10, 10);
+			listCordenadas[1] = new Point(10, 400);
+			listCordenadas[2] = new Point(10, 700);
 		}
-		if (numeroDeCalle == 2) {
-			coordenadas.x = 390;
-			coordenadas.y = 160;
+		if (direccion == 1) {
+			listCordenadas[0] = new Point(10, 10);
+			listCordenadas[1] = new Point(400, 10);
+			listCordenadas[2] = new Point(700, 10);
 		}
-		if (numeroDeCalle == 3) {
-			coordenadas.x = 635;
-			coordenadas.y = 160;
+		if (direccion == 2) {
+			listCordenadas[0] = new Point(10, 10);
+			listCordenadas[1] = new Point(10, 400);
+			listCordenadas[2] = new Point(10, 700);
 		}
-		if (numeroDeCalle == 4) {
-			coordenadas.x = 150;
-			coordenadas.y = 440;
+		if (direccion == 3) {
+			listCordenadas[0] = new Point(10, 10);
+			listCordenadas[1] = new Point(400, 10);
+			listCordenadas[2] = new Point(700, 10);
 		}
-		if (numeroDeCalle == 5) {
-			coordenadas.x = 390;
-			coordenadas.y = 440;
-		}
-		if (numeroDeCalle == 6) {
-			coordenadas.x = 635;
-			coordenadas.y = 440;
-		}
-
-		return coordenadas;
+		return listCordenadas;
 	}
+
 
 }
