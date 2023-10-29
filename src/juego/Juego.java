@@ -35,6 +35,7 @@ public class Juego extends InterfaceJuego {
 
 		// Mueve a Laika
 		this.laika.mover(entorno, this.calle.getCuadras());
+		this.laika.isViva();
 		Auto.moverAutos(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
 	}

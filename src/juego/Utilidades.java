@@ -96,16 +96,15 @@ abstract class Utilidades {
 		return coordenadas;
 	}
 
-static Point[] coordenadaAparicionEnemigo(int direccion) {
+	static Point[] coordenadaAparicionEnemigo(int direccion) {
 		Point[] listCordenadas = new Point[4];
-		
 
 		if (direccion == 1) {
 			listCordenadas[0] = new Point(30, 30);
 			listCordenadas[1] = new Point(260, 30);
 			listCordenadas[2] = new Point(510, 30);
 			listCordenadas[3] = new Point(760, 30);
-			
+
 		}
 		if (direccion == 2) {
 			listCordenadas[0] = new Point(30, 760);
@@ -127,6 +126,5 @@ static Point[] coordenadaAparicionEnemigo(int direccion) {
 		}
 		return listCordenadas;
 	}
-
 
 }

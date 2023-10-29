@@ -22,11 +22,11 @@ public class Planta {
 		this.y = y;
 		this.height = (int) (height * escala);
 		this.width = (int) (width * escala);
-		if(direccion==1)
-			this.imagen =  Herramientas.cargarImagen("imagenes/planta-izquierda.png");
+		if (direccion == 1)
+			this.imagen = Herramientas.cargarImagen("imagenes/planta-izquierda.png");
 		else
 			this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
-		
+
 		this.direccion = direccion;
 	}
 
@@ -87,8 +87,8 @@ public class Planta {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
 					if (planta.x <= 0) {
 						planta.direccion = 3;
-					    planta.girarDerecha();
-					    }
+						planta.girarDerecha();
+					}
 					planta.x -= planta.velocidad;
 				} else {
 					planta.direccion = 3;

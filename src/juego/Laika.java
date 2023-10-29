@@ -1,26 +1,36 @@
 package juego;
 
 import java.awt.Image;
+
 import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Laika {
 	private int x, y;
-	// private boolean estaViva;
 	private int height;
 	private int width;
 	private double escala = 0.037;
 	private int velocidad = 3;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
+	private Hitbox hitbox;
+	private boolean estaViva = true;
 
 	// Constructor de Laika
 	public Laika() {
 		this.width = (int) (img.getWidth(null) * escala);
 		this.height = (int) (img.getHeight(null) * escala);
+		this.hitbox = new Hitbox(estaViva, this.x, this.y, this.width, this.height);
 	}
+
+	public boolean isViva() {
+		return estaViva;
+	}
+
+	// choca un auto, golpea una planta , o la bola de fuego
 
 	public void dibujarse(Entorno e) {
 		e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
+		hitbox.dibujar(e);
 	}
 
 	public void mover(Entorno e, Cuadra[] cuadras) {
@@ -28,12 +38,15 @@ public class Laika {
 			if (y <= 0)
 				return;
 			y -= velocidad;
+			hitbox.mover(x, y);
 		}
 
 		if (e.estaPresionada(e.TECLA_ABAJO) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ABAJO)) {
 			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight())
 				return;
 			y += velocidad;
+			hitbox.mover(x, y);
+
 		}
 
 		if (e.estaPresionada(e.TECLA_DERECHA) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_DERECHA)) {
@@ -41,6 +54,8 @@ public class Laika {
 			if (x + img.getWidth(e) * escala * 1.90 >= e.getWidth())
 				return;
 			x += velocidad;
+			hitbox.mover(x, y);
+
 		}
 
 		if (e.estaPresionada(e.TECLA_IZQUIERDA) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_IZQUIERDA)) {
@@ -62,6 +77,10 @@ public class Laika {
 
 	public boolean colisionBola() {
 		return false;
+	}
+
+	public Hitbox getHitbox() {
+		return hitbox;
 	}
 
 	public int getX() {
