@@ -4,14 +4,13 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import java.awt.Image;
 import java.util.Random;
-
+import java.awt.Point;
 public class Calle {
 	private Cuadra[] cuadras = new Cuadra[6];
 	private Planta[] plantas = new Planta[4];
 	private Auto[] autos = new Auto[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
-	// private int direccion;
-
+	private Point[] cordenadaenemigos;
 	public Calle() {
 		// Crea las manzanas
 		for (int i = 0; i < cuadras.length; i++) {
@@ -21,22 +20,19 @@ public class Calle {
 		// Crea las plantas
 		for (int i = 0; i < plantas.length; i++) {
 			Random random = new Random();
-			int xRandom = random.nextInt(750);
-			int yRandom = random.nextInt(550);
+			Point coordenada = new Point(0, 0);
 			int RandomLadoAparicion = random.nextInt(3);
-			if (RandomLadoAparicion == 0)
-				xRandom = 30;
+			cordenadaenemigos =  Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
+			for (int x = 0; x < cordenadaenemigos.length; x++) {
+				if(x==RandomLadoAparicion)
+				 coordenada =  cordenadaenemigos[x];
+			}
+				
+			
+			
+			   
 
-			if (RandomLadoAparicion == 1)
-				yRandom = 30;
-
-			if (RandomLadoAparicion == 2)
-				xRandom = xRandom + 200;
-
-			if (RandomLadoAparicion == 3)
-				yRandom = yRandom + 200;
-
-			plantas[i] = new Planta(xRandom, yRandom, 30, 30, RandomLadoAparicion);
+			plantas[i] = new Planta(coordenada.x, coordenada.y, 30, 30,RandomLadoAparicion);
 		}
 
 		// Crea los autos
