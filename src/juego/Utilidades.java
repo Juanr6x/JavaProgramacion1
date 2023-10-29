@@ -63,6 +63,30 @@ abstract class Utilidades {
 		return true;
 	}
 
+	public static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Auto obj2, char direccion) {
+		int agregarX = 0, agregarY = 0;
+
+		if (direccion == e.TECLA_ARRIBA)
+			agregarY -= obj2.getVelocidad();
+		if (direccion == e.TECLA_ABAJO)
+			agregarY += obj2.getVelocidad();
+		if (direccion == e.TECLA_DERECHA)
+			agregarX += obj2.getVelocidad();
+		if (direccion == e.TECLA_IZQUIERDA)
+			agregarX -= obj2.getVelocidad();
+
+		for (Cuadra ob1 : obj1) {
+			Rectangle rec1 = new Rectangle(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+			Rectangle rec2 = new Rectangle(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+					obj2.getWidth(),
+					obj2.getHeight());
+			if (rec1.intersects(rec2)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public static boolean colision(Planta obj1, Laika obj2) {
 		Rectangle rec1 = new Rectangle(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
 		if (rec1.intersects(obj2.getHitbox())) {

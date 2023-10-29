@@ -36,8 +36,8 @@ public class Calle {
 		for (int i = 0; i < plantas.length; i++) {
 			Random random = new Random();
 			int xRandom = random.nextInt(750);
-			int yRandom = random.nextInt(550);
-			autos[i] = new Auto(xRandom, yRandom, 30, 30);
+			int yRandom = 0;
+			autos[i] = new Auto(xRandom, yRandom, 1);
 		}
 	}
 

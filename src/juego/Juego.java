@@ -44,9 +44,9 @@ public class Juego extends InterfaceJuego {
 			this.laika.mover(entorno, this.calle.getCuadras());
 
 			// Serian como los mordiscos, si se encuentran con laika, laika muere.
-			Planta.atacar(this.entorno, this.plantas, this.laika);
+			// Planta.atacar(this.entorno, this.plantas, this.laika);
 		}
-		Auto.moverAutos(autos);
+		Auto.moverAutos(entorno, cuadras, autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
 
 	}
