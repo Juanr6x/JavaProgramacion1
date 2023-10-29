@@ -1,6 +1,9 @@
 package juego;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
+import entorno.Entorno;
 
 abstract class Utilidades {
 
@@ -10,6 +13,54 @@ abstract class Utilidades {
 		System.out.println("x = " + laika.getX());
 		System.out.println("y = " + laika.getY());
 		System.out.println("--------------------");
+	}
+
+	static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Laika obj2, char direccion) {
+		int agregarX = 0, agregarY = 0;
+
+		if (direccion == e.TECLA_ARRIBA)
+			agregarY -= obj2.getVelocidad();
+		if (direccion == e.TECLA_ABAJO)
+			agregarY += obj2.getVelocidad();
+		if (direccion == e.TECLA_DERECHA)
+			agregarX += obj2.getVelocidad();
+		if (direccion == e.TECLA_IZQUIERDA)
+			agregarX -= obj2.getVelocidad();
+
+		for (Cuadra ob1 : obj1) {
+			Rectangle rec1 = new Rectangle(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+			Rectangle rec2 = new Rectangle(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+					obj2.getWidth(),
+					obj2.getHeight());
+			if (rec1.intersects(rec2)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Planta obj2, char direccion) {
+		int agregarX = 0, agregarY = 0;
+
+		if (direccion == e.TECLA_ARRIBA)
+			agregarY -= obj2.getVelocidad();
+		if (direccion == e.TECLA_ABAJO)
+			agregarY += obj2.getVelocidad();
+		if (direccion == e.TECLA_DERECHA)
+			agregarX += obj2.getVelocidad();
+		if (direccion == e.TECLA_IZQUIERDA)
+			agregarX -= obj2.getVelocidad();
+
+		for (Cuadra ob1 : obj1) {
+			Rectangle rec1 = new Rectangle(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+			Rectangle rec2 = new Rectangle(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+					obj2.getWidth(),
+					obj2.getHeight());
+			if (rec1.intersects(rec2)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,
@@ -44,7 +95,7 @@ abstract class Utilidades {
 
 		return coordenadas;
 	}
-	
+
 	static Point coordenadaAparicionEnemigo(int numeroDeCalle) {
 		Point coordenadas = new Point(0, 0);
 

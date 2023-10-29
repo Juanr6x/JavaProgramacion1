@@ -13,6 +13,7 @@ public class Juego extends InterfaceJuego {
 	private Laika laika = new Laika();
 	private Auto[] autos;
 	private Planta[] plantas;
+	private Cuadra[] cuadras;
 
 	Juego() {
 		// Inicio del juego
@@ -21,6 +22,7 @@ public class Juego extends InterfaceJuego {
 		// toda la logica del juego
 		// está dentro de la clase Calle
 		this.calle = new Calle();
+		this.cuadras = this.calle.getCuadras();
 		this.autos = this.calle.getAutos();
 		this.plantas = this.calle.getPlantas();
 		this.entorno.iniciar();
@@ -34,7 +36,7 @@ public class Juego extends InterfaceJuego {
 		// Mueve a Laika
 		this.laika.mover(entorno, this.calle.getCuadras());
 		Auto.moverAutos(autos);
-		Planta.moverPlantas(plantas);
+		Planta.moverPlantas(entorno, cuadras, plantas);
 	}
 
 	@SuppressWarnings("unused")

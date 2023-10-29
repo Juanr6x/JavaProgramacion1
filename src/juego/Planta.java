@@ -7,21 +7,21 @@ import entorno.Entorno;
 import entorno.Herramientas;
 
 public class Planta {
-	private double x;
-	private double y;
-	private double alto;
-	private double ancho;
-	private double velocidad = 1.5;
+	private int x;
+	private int y;
+	private int height;
+	private int width;
+	private int velocidad = 2;
 	private double escala = 0.08;
 	private Image imagen;
 	private static Planta[] plantas;
 	private int direccion;
 
-	public Planta(int x, int y, int alto, int ancho,int  direccion) {
+	public Planta(int x, int y, int height, int width, int direccion) {
 		this.x = x;
 		this.y = y;
-		this.alto = alto;
-		this.ancho = ancho;
+		this.height = (int) (height * escala);
+		this.width = (int) (width * escala);
 		this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
 		this.direccion = direccion;
 	}
@@ -32,26 +32,61 @@ public class Planta {
 			Random random = new Random();
 			int xRandom = random.nextInt(750);
 			int yRandom = random.nextInt(550);
-			plantas[i] = new Planta(xRandom, yRandom, 30, 30,1);
+			plantas[i] = new Planta(xRandom, yRandom, 30, 30, 1);
 		}
 		return plantas;
 	}
 
-	public static void moverPlantas(Planta[] plantas) {
-		for (Planta planta : plantas) {	
-			if(planta.direccion == 0)
-				planta.moverDerecha();
+	public static void moverPlantas(Entorno e, Cuadra[] cuadras, Planta[] plantas) {
+		for (Planta planta : plantas) {
+			// 1 ---> arriba
+			// 2 ---> abajo
+			// 3 ---> derecha
+			// 4 ---> izquierda
 
-			if(planta.direccion == 1)
-				planta.moverIzquierda();
-				
-			if(planta.direccion == 2)
-				planta.moverArriba();
+			if (planta.direccion == 2) {
+				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
+					if (planta.y <= 0)
+						return;
+					planta.y -= planta.velocidad;
+				} else {
+					planta.direccion = 1;
+				}
+			}
 
-			if(planta.direccion == 3)
-				planta.moverAbajo();
-			
-			
+			else if (planta.direccion == 1) {
+
+				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
+					if (planta.y >= 600)
+						return;
+					planta.y += planta.velocidad;
+				} else {
+					planta.direccion = 2;
+				}
+
+			}
+
+			else if (planta.direccion == 3) {
+
+				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
+					if (planta.x >= 800)
+						return;
+					planta.x += planta.velocidad;
+				} else {
+					planta.direccion = 4;
+				}
+			}
+
+			else if (planta.direccion == 4) {
+				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
+					if (planta.x <= 0)
+						return;
+					planta.x -= planta.velocidad;
+				} else {
+					planta.direccion = 3;
+				}
+
+			}
 		}
 	}
 
@@ -66,19 +101,19 @@ public class Planta {
 	}
 
 	public void moverDerecha() {
-		this.x = this.x + this.velocidad;
+		this.x = (int) (this.x + this.velocidad);
 	}
 
 	void moverIzquierda() {
-		this.x = this.x - this.velocidad;
+		this.x = (int) (this.x - this.velocidad);
 	}
 
 	void moverArriba() {
-		this.y = this.y - this.velocidad;
+		this.y = (int) (this.y - this.velocidad);
 	}
 
 	void moverAbajo() {
-		this.y = this.y + this.velocidad;
+		this.y = (int) (this.y + this.velocidad);
 	}
 
 	// TODO
@@ -102,23 +137,23 @@ public class Planta {
 		this.imagen = Herramientas.cargarImagen("imagenes/planta-izquierda.png");
 	}
 
-	public double getX() {
+	public int getX() {
 		return this.x;
 	}
 
-	public double getY() {
+	public int getY() {
 		return this.y;
 	}
 
-	public double getAlto() {
-		return this.alto;
+	public int getHeight() {
+		return this.height;
 	}
 
-	public double getAncho() {
-		return this.ancho;
+	public int getWidth() {
+		return this.width;
 	}
 
-	public double getVelocidad() {
+	public int getVelocidad() {
 		return this.velocidad;
 	}
 }

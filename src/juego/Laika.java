@@ -1,8 +1,6 @@
 package juego;
 
 import java.awt.Image;
-import java.awt.Rectangle;
-
 import entorno.Entorno;
 import entorno.Herramientas;
 
@@ -25,50 +23,27 @@ public class Laika {
 		e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
 	}
 
-	public boolean sePuedeMover(Cuadra[] cuadras, String direccion) {
-		int agregarX = 0, agregarY = 0;
-
-		if (direccion.equals("arriba"))
-			agregarY -= velocidad;
-		if (direccion.equals("abajo"))
-			agregarY += velocidad;
-		if (direccion.equals("derecha"))
-			agregarX += velocidad;
-		if (direccion.equals("izquierda"))
-			agregarX -= velocidad;
-
-		for (Cuadra cuadra : cuadras) {
-			Rectangle rec = new Rectangle(cuadra.getX(), cuadra.getY(), cuadra.getWidth(), cuadra.getHeight());
-			Rectangle recLaika = new Rectangle(this.getX() + agregarX, this.getY() + agregarY + this.velocidad, this.width,
-					this.height);
-			if (rec.intersects(recLaika)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public void mover(Entorno e, Cuadra[] cuadras) {
-		if (e.estaPresionada(e.TECLA_ARRIBA) && sePuedeMover(cuadras, "arriba")) {
+		if (e.estaPresionada(e.TECLA_ARRIBA) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ARRIBA)) {
 			if (y <= 0)
 				return;
 			y -= velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_ABAJO) && sePuedeMover(cuadras, "abajo")) {
+		if (e.estaPresionada(e.TECLA_ABAJO) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ABAJO)) {
 			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight())
 				return;
 			y += velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_DERECHA) && sePuedeMover(cuadras, "derecha")) {
+		if (e.estaPresionada(e.TECLA_DERECHA) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_DERECHA)) {
 			girarDerecha();
 			if (x + img.getWidth(e) * escala * 1.90 >= e.getWidth())
 				return;
 			x += velocidad;
 		}
 
-		if (e.estaPresionada(e.TECLA_IZQUIERDA) && sePuedeMover(cuadras, "izquierda")) {
+		if (e.estaPresionada(e.TECLA_IZQUIERDA) && Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_IZQUIERDA)) {
 			girarIzquierda();
 			if (x < 0)
 				return;
@@ -103,6 +78,10 @@ public class Laika {
 
 	public int getWidth() {
 		return this.width;
+	}
+
+	public int getVelocidad() {
+		return velocidad;
 	}
 
 	// private RayoDestructor dispararRayo() {

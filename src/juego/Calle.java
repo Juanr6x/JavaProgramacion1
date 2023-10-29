@@ -10,7 +10,8 @@ public class Calle {
 	private Planta[] plantas = new Planta[4];
 	private Auto[] autos = new Auto[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
-	private int direccion;  
+	// private int direccion;
+
 	public Calle() {
 		// Crea las manzanas
 		for (int i = 0; i < cuadras.length; i++) {
@@ -23,20 +24,19 @@ public class Calle {
 			int xRandom = random.nextInt(750);
 			int yRandom = random.nextInt(550);
 			int RandomLadoAparicion = random.nextInt(3);
-			if (RandomLadoAparicion==0)
-				 xRandom = 30;
-			
-			if (RandomLadoAparicion==1)
-				 yRandom = 30;
-			
-			if (RandomLadoAparicion==2)
-				xRandom = xRandom + 200 ;
-			
-			if (RandomLadoAparicion==3)
-			   yRandom = yRandom + 200 ;
-			   
+			if (RandomLadoAparicion == 0)
+				xRandom = 30;
 
-			plantas[i] = new Planta(xRandom, yRandom, 30, 30,RandomLadoAparicion);
+			if (RandomLadoAparicion == 1)
+				yRandom = 30;
+
+			if (RandomLadoAparicion == 2)
+				xRandom = xRandom + 200;
+
+			if (RandomLadoAparicion == 3)
+				yRandom = yRandom + 200;
+
+			plantas[i] = new Planta(xRandom, yRandom, 30, 30, RandomLadoAparicion);
 		}
 
 		// Crea los autos
