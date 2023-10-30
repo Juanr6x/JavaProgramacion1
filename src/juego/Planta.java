@@ -13,23 +13,29 @@ public class Planta {
 	private int height;
 	private int width;
 	private int velocidad = 2;
-	private double escala = 0.08;
+	private double escala = 0.07;
 	private Image imagen;
 	private static Planta[] plantas;
-	private int direccion;
+	private Direccion direccion;
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
 
-	public Planta(int x, int y, int height, int width, int direccion) {
+	public Planta(int x, int y, int direccion) {
 		this.x = x;
 		this.y = y;
-		this.height = (int) (height * escala);
-		this.width = (int) (width * escala);
-		if (direccion == 1)
+
+		if (direccion == 1) {
 			this.imagen = Herramientas.cargarImagen("imagenes/planta-izquierda.png");
-		else
+
+		} else {
+
 			this.imagen = Herramientas.cargarImagen("imagenes/planta-derecha1.png");
-		this.direccion = direccion;
+		}
+		this.height = (int) (this.imagen.getHeight(null) * escala);
+		this.width = (int) (this.imagen.getWidth(null) * escala);
+		// if (direccion == 2)
+
+		this.direccion = new Direccion(direccion);
 		this.hitbox = new Hitbox(estaVivo, this.x, this.y, this.width, this.height);
 	}
 
@@ -39,59 +45,64 @@ public class Planta {
 			Random random = new Random();
 			int xRandom = random.nextInt(750);
 			int yRandom = random.nextInt(550);
-			plantas[i] = new Planta(xRandom, yRandom, 30, 30, 1);
+			plantas[i] = new Planta(xRandom, yRandom, 1);
 		}
 		return plantas;
 	}
 
 	public static void moverPlantas(Entorno e, Cuadra[] cuadras, Planta[] plantas) {
 		for (Planta planta : plantas) {
-
-			if (planta.direccion == 2) {
+			if (planta.direccion.getDireccionString().equals("arriba")) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
-					if (planta.y <= 0)
-						planta.direccion = 1;
-					planta.y -= planta.velocidad;
-				} else {
-					planta.direccion = 1;
+					if (planta.y <= 0) {
+						planta.direccion.invertirDireccion();
+						planta.y -= planta.velocidad;
+					}
 				}
 			}
 
-			else if (planta.direccion == 1) {
+			else if (planta.direccion.getDireccionString().equals("abajo")) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
-					if (planta.y >= 600)
-						planta.direccion = 2;
-					planta.y += planta.velocidad;
-				} else {
-					planta.direccion = 2;
+					if (planta.y >= 600) {
+						planta.direccion.invertirDireccion();
+						planta.y += planta.velocidad;
+					}
 				}
-
 			}
 
-			else if (planta.direccion == 3) {
+			else if (planta.direccion.getDireccionString().equals("derecha")) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
 					if (planta.x >= 800) {
-						planta.direccion = 4;
+						planta.direccion.invertirDireccion();
 						planta.girarIzquierda();
 					}
-					planta.x += planta.velocidad;
-				} else {
-					planta.direccion = 4;
 				}
 			}
 
-			else if (planta.direccion == 4) {
+			else if (planta.direccion.getDireccionString().equals("izquierda")) {
 				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
 					if (planta.x <= 0) {
-						planta.direccion = 3;
+						planta.direccion.invertirDireccion();
 						planta.girarDerecha();
 					}
-					planta.x -= planta.velocidad;
-				} else {
-					planta.direccion = 3;
 				}
 			}
+			planta.avanzar();
 		}
+	}
+
+	public void avanzar() {
+
+		if (this.direccion.getDireccionString().equals("derecha")) {
+			this.x += this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("izquierda")) {
+			this.x -= this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("arriba")) {
+			this.y -= this.velocidad;
+		} else if (this.direccion.getDireccionString().equals("abajo")) {
+			this.y += this.velocidad;
+		}
+
 	}
 
 	public static void atacar(Entorno e, Planta[] plantas, Laika laika) {
@@ -104,7 +115,7 @@ public class Planta {
 
 	public static void dibujar(Entorno entorno, Planta[] plantas) {
 		for (Planta planta : plantas) {
-			entorno.dibujarImagen(planta.imagen, planta.x, planta.y, 0, planta.escala);
+			entorno.dibujarImagenConCentro(planta.imagen, planta.x, planta.y, 0, 0, 0, planta.escala);
 		}
 	}
 
@@ -148,16 +159,17 @@ public class Planta {
 	public int getVelocidad() {
 		return this.velocidad;
 	}
-		public int getSentido() {
+
+	public int getSentido() {
 		return this.velocidad;
 	}
-	public static void DispararPlantas(Entorno e,BolaDeFuego[] bolasdefuego, Planta[] plantas) {
+
+	public static void DispararPlantas(Entorno e, BolaDeFuego[] bolasdefuego, Planta[] plantas) {
 		for (int i = 0; i < plantas.length; i++) {
-			if( bolasdefuego[i] !=null ) {
+			if (bolasdefuego[i] != null) {
 				bolasdefuego[i].dibujar(e);
 				bolasdefuego[i].mover();
 			}
 		}
 	}
-
 }

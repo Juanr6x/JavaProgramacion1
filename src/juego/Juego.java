@@ -16,7 +16,6 @@ public class Juego extends InterfaceJuego {
 	private Cuadra[] cuadras;
 	private BolaDeFuego[] bolasdefuego;
 
-
 	Juego() {
 		// Inicio del juego
 		this.entorno = new Entorno(this, "Attack on Titan, Final Season - Grupo ... - v1", width, height);
@@ -52,30 +51,28 @@ public class Juego extends InterfaceJuego {
 		Auto.moverAutos(entorno, cuadras, autos);
 		// Auto.avanzar(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
-				Planta.DispararPlantas(entorno,bolasdefuego, plantas);
-		
-		// intenta que dispare otra vez 
+		Planta.DispararPlantas(entorno, bolasdefuego, plantas);
+
+		// intenta que dispare otra vez
 		for (int i = 0; i < plantas.length; i++) {
 			if (plantas[i].getSentido() == 1) {
 				if (plantas[i].getY() >= 600)
-					bolasdefuego[i] = null;	
-				if (bolasdefuego[i] == null) 					
-					bolasdefuego[i] = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(),30,30,plantas[i].getSentido(),5);
-		     }
-			else if (plantas[i].getSentido() == 2) {
+					bolasdefuego[i] = null;
+				if (bolasdefuego[i] == null)
+					bolasdefuego[i] = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30, plantas[i].getSentido(), 5);
+			} else if (plantas[i].getSentido() == 2) {
 				if (plantas[i].getY() <= 0)
 					bolasdefuego[i] = null;
-		     }
+			}
 			if (plantas[i].getSentido() == 3) {
 				if (plantas[i].getX() >= 800)
 					bolasdefuego[i] = null;
-		     }
+			}
 			if (plantas[i].getSentido() == 4) {
-				if (plantas[i].getX() <= 0) 
+				if (plantas[i].getX() <= 0)
 					bolasdefuego[i] = null;
-		     }
+			}
 		}
-
 	}
 
 	@SuppressWarnings("unused")

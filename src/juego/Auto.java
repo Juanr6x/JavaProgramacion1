@@ -13,16 +13,16 @@ public class Auto {
 	private int velocidad = 2;
 	private Direccion direccion;
 	private double escala = 0.30;
-	private Image img;
+	private Image img = Herramientas.cargarImagen("imagenes/auto-arriba.png");
 	// private int chocaste = 0;
 
 	public Auto(int x, int y, int direccion) {
 		this.x = x;
 		this.y = y;
-		this.direccion = new Direccion("derecha");
-		this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
-		this.height = (int) (img.getHeight(null) * escala);
+		this.direccion = new Direccion(direccion);
+		this.img = Herramientas.cargarImagen("imagenes/auto-" + this.direccion.getDireccionString() + ".png");
 		this.width = (int) (img.getWidth(null) * escala);
+		this.height = (int) (img.getHeight(null) * escala);
 	}
 
 	public static void atacar(Entorno e, Auto[] autos, Laika laika) {
@@ -51,16 +51,19 @@ public class Auto {
 		for (Auto auto : autos) {
 			if (auto.direccion.getDireccionString().equals("arriba")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ARRIBA)) {
-					if (auto.y <= 0)
+					if (auto.y <= 0) {
+						auto.girarImagen();
 						auto.direccion.invertirDireccion();
+					}
 				}
 			}
 
 			else if (auto.direccion.getDireccionString().equals("abajo")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ABAJO)) {
-					if (auto.y >= 600)
+					if (auto.y >= 600) {
+						auto.girarImagen();
 						auto.direccion.invertirDireccion();
-					auto.y += auto.velocidad;
+					}
 				}
 
 			}
@@ -68,20 +71,18 @@ public class Auto {
 			else if (auto.direccion.getDireccionString().equals("derecha")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_DERECHA)) {
 					if (auto.x >= 800) {
+						auto.girarImagen();
 						auto.direccion.invertirDireccion();
-						auto.girar();
 					}
-					auto.x += auto.velocidad;
 				}
 			}
 
 			else if (auto.direccion.getDireccionString().equals("izquierda")) {
 				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_IZQUIERDA)) {
 					if (auto.x <= 0) {
+						auto.girarImagen();
 						auto.direccion.invertirDireccion();
-						auto.girar();
 					}
-					auto.x -= auto.velocidad;
 				}
 			}
 			auto.avanzar();
@@ -94,14 +95,20 @@ public class Auto {
 	}
 
 	// TODO
-	public void girar() {
-		if (direccion.equals("izquierda")) {
-
+	public void girarImagen() {
+		if (this.direccion.getDireccionString().equals("derecha")) {
+			this.img = Herramientas.cargarImagen("imagenes/auto-izquierda.png");
 		}
-		// (this.img.getSource().equals("imagenes/auto-izquierda.png"))
-		// this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
-		// else
-		// this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
+		if (this.direccion.getDireccionString().equals("izquierda")) {
+			this.img = Herramientas.cargarImagen("imagenes/auto-derecha.png");
+		}
+		if (this.direccion.getDireccionString().equals("arriba")) {
+			this.img = Herramientas.cargarImagen("imagenes/auto-arriba.png");
+		}
+		if (this.direccion.getDireccionString().equals("abajo")) {
+			this.img = Herramientas.cargarImagen("imagenes/auto-abajo.png");
+		}
+
 	}
 
 	public int getX() {

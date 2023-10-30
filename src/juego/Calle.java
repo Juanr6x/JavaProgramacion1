@@ -13,6 +13,7 @@ public class Calle {
 	private BolaDeFuego[] bolasdefuego = new BolaDeFuego[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
 	private Point[] cordenadaenemigos;
+	// private Point[] cordenadaAutos;
 
 	public Calle() {
 		// Crea las manzanas
@@ -30,17 +31,26 @@ public class Calle {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
-			bolasdefuego[i] = new BolaDeFuego(coordenada.x, coordenada.y,30,30,RandomLadoAparicion,5);
-			plantas[i] = new Planta(coordenada.x, coordenada.y, 30, 30, RandomLadoAparicion);
+			bolasdefuego[i] = new BolaDeFuego(coordenada.x, coordenada.y, 30, 30, RandomLadoAparicion, 5);
+			plantas[i] = new Planta(coordenada.x, coordenada.y, RandomLadoAparicion);
 		}
 
-		// Crea los autos
 		for (int i = 0; i < autos.length; i++) {
 			Random random = new Random();
-			int xRandom = random.nextInt(750);
-			int yRandom = 0;
-			autos[i] = new Auto(xRandom, yRandom, 4);
+			Point coordenada = new Point(0, 0);
+			int RandomLadoAparicion = random.nextInt(1, 4);
+			cordenadaenemigos = Utilidades.coordenadaAparicionAuto(RandomLadoAparicion);
+			for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
+				if (x == RandomLadoAparicion)
+					coordenada = cordenadaenemigos[random.nextInt(4)];
+			}
+			autos[i] = new Auto(coordenada.x, coordenada.y, RandomLadoAparicion);
 		}
+
+	}
+
+	public BolaDeFuego[] getBolasDeFuego() {
+		return bolasdefuego;
 	}
 
 	public Cuadra[] getCuadras() {
@@ -53,9 +63,6 @@ public class Calle {
 
 	public Auto[] getAutos() {
 		return autos;
-	}
-	public BolaDeFuego[] getBolasDeFuego() {
-		return bolasdefuego;
 	}
 
 	public void dibujarse(Entorno e) {

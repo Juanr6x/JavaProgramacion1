@@ -141,22 +141,22 @@ abstract class Utilidades {
 
 		if (direccion == 1) {
 			listCordenadas[0] = new Point(30, 30);
-			listCordenadas[1] = new Point(260, 30);
-			listCordenadas[2] = new Point(510, 30);
+			listCordenadas[1] = new Point(280, 30);
+			listCordenadas[2] = new Point(530, 30);
 			listCordenadas[3] = new Point(760, 30);
 
 		}
 		if (direccion == 2) {
 			listCordenadas[0] = new Point(30, 760);
-			listCordenadas[1] = new Point(260, 760);
-			listCordenadas[2] = new Point(510, 760);
+			listCordenadas[1] = new Point(280, 760);
+			listCordenadas[2] = new Point(530, 760);
 			listCordenadas[3] = new Point(760, 760);
 		}
 		if (direccion == 3) {
 			listCordenadas[0] = new Point(30, 30);
-			listCordenadas[1] = new Point(30, 300);
+			listCordenadas[1] = new Point(30, 00);
 			listCordenadas[2] = new Point(30, 570);
-			listCordenadas[3] = new Point(30, 300);
+			listCordenadas[3] = new Point(30, 00);
 		}
 		if (direccion == 4) {
 			listCordenadas[0] = new Point(760, 30);
@@ -164,6 +164,38 @@ abstract class Utilidades {
 			listCordenadas[2] = new Point(760, 570);
 			listCordenadas[3] = new Point(760, 760);
 		}
+		return listCordenadas;
+	}
+
+	public static Point[] coordenadaAparicionAuto(int direccion) {
+		Point[] listCordenadas = new Point[4];
+
+		if (direccion == 1) {
+			listCordenadas[0] = new Point(0, 0);
+			listCordenadas[1] = new Point(220, 0);
+			listCordenadas[2] = new Point(470, 0);
+			listCordenadas[3] = new Point(760, 0);
+
+		}
+		if (direccion == 2) {
+			listCordenadas[0] = new Point(0, 760);
+			listCordenadas[1] = new Point(220, 760);
+			listCordenadas[2] = new Point(470, 760);
+			listCordenadas[3] = new Point(760, 760);
+		}
+		if (direccion == 3) {
+			listCordenadas[0] = new Point(0, 0);
+			listCordenadas[1] = new Point(0, 00);
+			listCordenadas[2] = new Point(0, 570);
+			listCordenadas[3] = new Point(0, 0);
+		}
+		if (direccion == 4) {
+			listCordenadas[0] = new Point(760, 0);
+			listCordenadas[1] = new Point(760, 300);
+			listCordenadas[2] = new Point(760, 570);
+			listCordenadas[3] = new Point(760, 760);
+		}
+
 		return listCordenadas;
 	}
 
