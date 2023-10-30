@@ -47,7 +47,7 @@ public class RayoDestructor {
 		if (this.sentido == 3) {//abajo
 			angulo = 90;
 		}
-		entorno.dibujarImagenConCentro(imagen, x,y, 30, 30, 0,0.10);
+		entorno.dibujarImagenConCentro(imagen, x,y+10, 30, 30, 0,0.10);
 	}
 	void mover() {
 		if(sentido == 1) {

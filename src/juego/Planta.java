@@ -113,12 +113,7 @@ public class Planta {
 		}
 	}
 
-	public static void dibujar(Entorno entorno, Planta[] plantas) {
-		for (Planta planta : plantas) {
-			entorno.dibujarImagenConCentro(planta.imagen, planta.x, planta.y, 0, 0, 0, planta.escala);
-		}
-	}
-
+	
 	public void dibujar(Entorno e) {
 		e.dibujarImagen(this.imagen, this.x, this.y, 0, this.escala);
 	}
