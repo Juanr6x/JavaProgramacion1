@@ -14,6 +14,8 @@ public class Juego extends InterfaceJuego {
 	private Auto[] autos;
 	private Planta[] plantas;
 	private Cuadra[] cuadras;
+	private BolaDeFuego[] bolasdefuego;
+
 
 	Juego() {
 		// Inicio del juego
@@ -26,6 +28,7 @@ public class Juego extends InterfaceJuego {
 		this.cuadras = this.calle.getCuadras();
 		this.autos = this.calle.getAutos();
 		this.plantas = this.calle.getPlantas();
+		this.bolasdefuego = this.calle.getBolasDeFuego();
 		this.entorno.iniciar();
 	}
 
@@ -49,6 +52,29 @@ public class Juego extends InterfaceJuego {
 		Auto.moverAutos(entorno, cuadras, autos);
 		// Auto.avanzar(autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
+				Planta.DispararPlantas(entorno,bolasdefuego, plantas);
+		
+		// intenta que dispare otra vez 
+		for (int i = 0; i < plantas.length; i++) {
+			if (plantas[i].getSentido() == 1) {
+				if (plantas[i].getY() >= 600)
+					bolasdefuego[i] = null;	
+				if (bolasdefuego[i] == null) 					
+					bolasdefuego[i] = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(),30,30,plantas[i].getSentido(),5);
+		     }
+			else if (plantas[i].getSentido() == 2) {
+				if (plantas[i].getY() <= 0)
+					bolasdefuego[i] = null;
+		     }
+			if (plantas[i].getSentido() == 3) {
+				if (plantas[i].getX() >= 800)
+					bolasdefuego[i] = null;
+		     }
+			if (plantas[i].getSentido() == 4) {
+				if (plantas[i].getX() <= 0) 
+					bolasdefuego[i] = null;
+		     }
+		}
 
 	}
 

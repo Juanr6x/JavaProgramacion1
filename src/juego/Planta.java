@@ -148,4 +148,16 @@ public class Planta {
 	public int getVelocidad() {
 		return this.velocidad;
 	}
+		public int getSentido() {
+		return this.velocidad;
+	}
+	public static void DispararPlantas(Entorno e,BolaDeFuego[] bolasdefuego, Planta[] plantas) {
+		for (int i = 0; i < plantas.length; i++) {
+			if( bolasdefuego[i] !=null ) {
+				bolasdefuego[i].dibujar(e);
+				bolasdefuego[i].mover();
+			}
+		}
+	}
+
 }

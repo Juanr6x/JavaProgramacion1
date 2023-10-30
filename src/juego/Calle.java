@@ -10,6 +10,7 @@ public class Calle {
 	private Cuadra[] cuadras = new Cuadra[6];
 	private Planta[] plantas = new Planta[4];
 	private Auto[] autos = new Auto[4];
+	private BolaDeFuego[] bolasdefuego = new BolaDeFuego[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
 	private Point[] cordenadaenemigos;
 
@@ -29,6 +30,7 @@ public class Calle {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
+			bolasdefuego[i] = new BolaDeFuego(coordenada.x, coordenada.y,30,30,RandomLadoAparicion,5);
 			plantas[i] = new Planta(coordenada.x, coordenada.y, 30, 30, RandomLadoAparicion);
 		}
 
@@ -51,6 +53,9 @@ public class Calle {
 
 	public Auto[] getAutos() {
 		return autos;
+	}
+	public BolaDeFuego[] getBolasDeFuego() {
+		return bolasdefuego;
 	}
 
 	public void dibujarse(Entorno e) {
