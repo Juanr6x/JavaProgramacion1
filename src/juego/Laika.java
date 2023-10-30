@@ -15,6 +15,7 @@ public class Laika {
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
+	private int contadorInvincibility = 0;
 
 	// Constructor de Laika
 	public Laika() {
@@ -28,15 +29,19 @@ public class Laika {
 	}
 
 	public void morir() {
+		// establecemos unos segundos de invenciilidad para que no muera al instante
+		// y el jugador se pueda ubicar.
+		if (contadorInvincibility < 100)
+			return;
 		this.estaVivo = false;
 		this.velocidad = 0;
-		System.out.println("laika murio");
 	}
 
 	// choca un auto, golpea una planta , o la bola de fuego
 
 	public void dibujarse(Entorno e) {
 		e.dibujarImagenConCentro(img, x, y, 0, 0, 0, escala);
+		contadorInvincibility++;
 	}
 
 	public void mover(Entorno e, Cuadra[] cuadras) {
