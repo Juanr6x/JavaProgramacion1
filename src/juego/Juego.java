@@ -19,7 +19,7 @@ public class Juego extends InterfaceJuego {
 
 	Juego() {
 		// Inicio del juego
-		this.entorno = new Entorno(this, "Attack on Titan, Final Season - Grupo ... - v1", width, height);
+		this.entorno = new Entorno(this, "Plantas Invasoras", width, height);
 
 		// toda la logica del juego
 		// está dentro de la clase Calle
