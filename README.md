@@ -34,3 +34,9 @@ Para obtener más detalles sobre el juego "Plantas Invasoras", puedes consultar 
 completo en el siguiente enlace:
 
 [Informe Completo](https://1drv.ms/w/s!Aqz7qbuEl3rgg9p3mHw7xD0Aitylxw?e=Y6ZC8h)
+
+## Integrantes del Equipo
+
+- Lucas Sánchez
+- Tomás Villalba
+- Juan Luque
