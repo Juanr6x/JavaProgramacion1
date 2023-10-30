@@ -160,8 +160,8 @@ public class Planta {
 		return this.velocidad;
 	}
 
-	public int getSentido() {
-		return this.velocidad;
+	public Direccion getSentido() {
+		return direccion;
 	}
 
 	public static void DispararPlantas(Entorno e, BolaDeFuego[] bolasdefuego, Planta[] plantas) {

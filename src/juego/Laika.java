@@ -12,6 +12,7 @@ public class Laika {
 	private int width;
 	private double escala = 0.037;
 	private int velocidad = 3;
+	private int direccion;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
@@ -49,6 +50,7 @@ public class Laika {
 			if (y <= 0)
 				return;
 			y -= velocidad;
+			direccion = 1 ;
 			hitbox.mover(x, y);
 		}
 
@@ -56,6 +58,7 @@ public class Laika {
 			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight())
 				return;
 			y += velocidad;
+			direccion = 2 ;
 			hitbox.mover(x, y);
 
 		}
@@ -65,6 +68,7 @@ public class Laika {
 			if (x + img.getWidth(e) * escala * 1.90 >= e.getWidth())
 				return;
 			x += velocidad;
+			direccion = 3 ;
 			hitbox.mover(x, y);
 
 		}
@@ -74,6 +78,7 @@ public class Laika {
 			if (x < 0)
 				return;
 			x -= velocidad;
+			direccion = 4 ;
 		}
 		hitbox.mover(x, y);
 
@@ -115,8 +120,19 @@ public class Laika {
 	public int getVelocidad() {
 		return velocidad;
 	}
-
-	// private RayoDestructor dispararRayo() {
-	// return new RayoDestructor();
-	// }
+	public int getSentido() {
+		return direccion;
+	}
+	public void dispararRayo(Entorno e,RayoDestructor rayodestructor) {	
+		if (rayodestructor != null) {
+			if (e.estaPresionada(e.TECLA_ESPACIO)){
+				rayodestructor.SetDireccion(direccion);
+				rayodestructor.dibujar(e);
+				rayodestructor.mover();
+			}
+			
+		}
+		
+				
+	 }
 }
