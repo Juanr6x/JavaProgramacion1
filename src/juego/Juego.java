@@ -56,20 +56,21 @@ public class Juego extends InterfaceJuego {
 
 		// intenta que dispare otra vez
 		for (int i = 0; i < plantas.length; i++) {
-			if (plantas[i].getSentido() == 1) {
+			if (plantas[i].getSentido().getDireccion() == 1) {
 				if (plantas[i].getY() >= 600)
 					bolasdefuego[i] = null;
 				if (bolasdefuego[i] == null)
-					bolasdefuego[i] = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30, plantas[i].getSentido(), 5);
-			} else if (plantas[i].getSentido() == 2) {
+					bolasdefuego[i] = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30,
+							plantas[i].getSentido().getDireccion(), 5);
+			} else if (plantas[i].getSentido().getDireccion() == 2) {
 				if (plantas[i].getY() <= 0)
 					bolasdefuego[i] = null;
 			}
-			if (plantas[i].getSentido() == 3) {
+			if (plantas[i].getSentido().getDireccion() == 3) {
 				if (plantas[i].getX() >= 800)
 					bolasdefuego[i] = null;
 			}
-			if (plantas[i].getSentido() == 4) {
+			if (plantas[i].getSentido().getDireccion() == 4) {
 				if (plantas[i].getX() <= 0)
 					bolasdefuego[i] = null;
 			}
