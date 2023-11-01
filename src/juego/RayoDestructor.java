@@ -51,10 +51,10 @@ public class RayoDestructor {
 	}
 	void mover() {
 		if(sentido == 1) {
-			moverAr();
+			moverAb();
 		}
 		else if(sentido == 2) {
-			moverAb();
+			moverAr();
 		}
 		else if(sentido == 3) {
 			moverD();
@@ -79,5 +79,14 @@ public class RayoDestructor {
 	public int SetDireccion(int direccion) {
 		return this.sentido = direccion ;
 	}
-	
+	public boolean colisionRayoBordes(RayoDestructor rayodestructor) {
+		if (rayodestructor != null) {
+			if(rayodestructor.getX() >799  || rayodestructor.getX() < 0 ||
+					rayodestructor.getY() <0 || rayodestructor.getY() > 599){
+				return true;
+			}
+		}
+		return false;
+	}
 }
+	
