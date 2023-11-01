@@ -177,10 +177,20 @@ public class Planta {
 				plantas[i].boladefuego.mover();
 			}
 			
-			if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego)) {
+			if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego) && plantas[i].colisionPlantaBordes(plantas[i]) ) {
 				plantas[i].SetBolaDeFuego( null);
 			} 
 			
 		}
+	}
+	public boolean colisionPlantaBordes( Planta planta) {
+		
+		if (planta != null) {
+			if(planta.getX() >799  || planta.getX() < 0 ||
+					planta.getY() <0 || planta.getY() > 599){
+				return true;
+			}
+		}
+		return false;
 	}
 }
