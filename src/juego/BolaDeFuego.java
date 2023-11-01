@@ -74,4 +74,15 @@ public class BolaDeFuego {
 	void moverAr() {
 		this.y = this.y +velocidad;
 	}
+	
+	public boolean colisionBolaFuegoBordes(BolaDeFuego bolabefuego ) {
+		
+		if (bolabefuego != null) {
+			if(bolabefuego.getX() >799  || bolabefuego.getX() < 0 ||
+					bolabefuego.getY() <0 || bolabefuego.getY() > 599){
+				return true;
+			}
+		}
+		return false;
+	}
 }

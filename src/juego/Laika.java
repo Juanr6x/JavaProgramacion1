@@ -17,7 +17,7 @@ public class Laika {
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
 	private int contadorInvincibility = 0;
-
+	private RayoDestructor  rayodestructor ;
 	// Constructor de Laika
 	public Laika() {
 		this.width = (int) (img.getWidth(null) * escala);
@@ -123,17 +123,23 @@ public class Laika {
 	public int getSentido() {
 		return direccion;
 	}
-	public void dispararRayo(Entorno e,RayoDestructor rayodestructor) {	
-		if (rayodestructor != null) {
-			if (e.estaPresionada(e.TECLA_ESPACIO)){
-				rayodestructor.SetDireccion(direccion);
-				rayodestructor.dibujar(e);
-				rayodestructor.mover();
+	public  void  dispararRayo(Entorno entorno) {
+		
+		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+			if (rayodestructor == null) {
+				rayodestructor = new RayoDestructor(x, y, 30, 30, direccion, 10);
 			}
+		}
+		if (rayodestructor != null) {
+				rayodestructor.dibujar(entorno);
+				rayodestructor.mover();
+		}
 			
+		if (rayodestructor != null  && rayodestructor.colisionRayoBordes(rayodestructor)) {
+			rayodestructor = null;
 		}
 		
-				
+
 	 }
 	
 }

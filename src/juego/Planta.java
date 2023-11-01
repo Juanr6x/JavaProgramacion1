@@ -19,6 +19,7 @@ public class Planta {
 	private Direccion direccion;
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
+	private BolaDeFuego boladefuego;
 
 	public Planta(int x, int y, int direccion) {
 		this.x = x;
@@ -158,13 +159,28 @@ public class Planta {
 	public Direccion getSentido() {
 		return direccion;
 	}
-
-	public static void DispararPlantas(Entorno e, BolaDeFuego[] bolasdefuego, Planta[] plantas) {
+	
+	public BolaDeFuego getBolaDeFuego() {
+		return boladefuego;
+	}
+	
+	public BolaDeFuego SetBolaDeFuego(BolaDeFuego VBolaDeFuego ) {
+		return boladefuego = VBolaDeFuego;
+	}
+	public static void DispararPlantas(Entorno e, Planta[] plantas) {
 		for (int i = 0; i < plantas.length; i++) {
-			if (bolasdefuego[i] != null) {
-				bolasdefuego[i].dibujar(e);
-				bolasdefuego[i].mover();
+			if (plantas[i].getBolaDeFuego() == null) {
+				plantas[i].SetBolaDeFuego( plantas[i].boladefuego = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30,	plantas[i].getSentido().sentido, 5));
 			}
+			if (plantas[i].getBolaDeFuego() != null) {
+				plantas[i].boladefuego.dibujar(e);
+				plantas[i].boladefuego.mover();
+			}
+			
+			if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego)) {
+				plantas[i].SetBolaDeFuego( null);
+			} 
+			
 		}
 	}
 }
