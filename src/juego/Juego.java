@@ -2,6 +2,8 @@ package juego;
 
 import entorno.Entorno;
 import entorno.InterfaceJuego;
+import javax.swing.*;
+import java.awt.event.*;
 // import entorno.Menu;
 // import entorno.Herramientas;
 
@@ -54,7 +56,7 @@ public class Juego extends InterfaceJuego {
 		Planta.DispararPlantas(entorno, plantas);
 		laika.dispararRayo(entorno);
 		
-	
+		
 			
 	//	rayodestructor = this.laika.dispararRayo(entorno, rayodestructor);
 		// intenta que dispare otra vez
@@ -63,12 +65,16 @@ public class Juego extends InterfaceJuego {
 
 	}
 
-	@SuppressWarnings("unused")
+	public void windowClosing(WindowEvent e) {
+        volverAlMenu();
+    }
+	private void volverAlMenu() {
+        // Cierra la ventana actual del juego
+		entorno.dispose();
 
-	public static void main(String[] args) {
-		Juego juego = new Juego();
-	}
-	
+        // Crea una nueva instancia de la ventana del menú
+        Menu menu = new Menu();
+    }
 	
 
 }
