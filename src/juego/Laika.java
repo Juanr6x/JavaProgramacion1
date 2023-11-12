@@ -15,7 +15,8 @@ public class Laika {
 	private int direccion;
 	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
 	private Hitbox hitbox;
-
+	private int Puntaje;
+	private int Eliminados;
 	private boolean estaVivo = true;
 	private int contadorInvincibility = 0;
 	private RayoDestructor  rayodestructor ;
@@ -143,8 +144,26 @@ public class Laika {
 	public int getSentido() {
 		return direccion;
 	}
+	
+	public int getPuntaje() {
+		return Puntaje;
+	}
+
+	public int setPuntaje(int puntaje) {
+		return Puntaje = puntaje;
+	}
+	public int getEliminados() {
+		return Eliminados;
+	}
+
+	public int setEliminados(int eliminados) {
+		return Eliminados = eliminados;
+	}
+
+	
+
 	public  void  dispararRayo(Entorno entorno,Planta[] plantas) {
-		
+		boolean MatoPlanta;
 		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			if (rayodestructor == null) {
 				rayodestructor = new RayoDestructor(x, y, 30, 30, direccion, 10);
@@ -157,11 +176,15 @@ public class Laika {
 		
 
 		
-		if (rayodestructor != null  && ( rayodestructor.colisionRayoBordes(rayodestructor) || rayodestructor.colisionRayoPlantas(rayodestructor,plantas)) ) {
-		
-			rayodestructor = null;
+		if (rayodestructor != null ) {
+			if ( rayodestructor.colisionRayoPlantas(rayodestructor,plantas)) {
+				this.Puntaje = this.Puntaje + 5;
+				this.Eliminados = this.Eliminados + 1;
+				rayodestructor = null;
+			}
+			else if ( rayodestructor.colisionRayoBordes(rayodestructor))			
+				rayodestructor = null;
 		}
-		
 		
 			
 

@@ -1,7 +1,10 @@
 package juego;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+
+import javax.swing.JOptionPane;
 
 import entorno.Entorno;
 
@@ -265,4 +268,30 @@ abstract class Utilidades {
 
 	    return EstaAdentro(c1, p1) || EstaAdentro(c1, p2) || EstaAdentro(c1, p3) || EstaAdentro(c1, p4);
 	}
+	public static void mostrarPuntuacion(int puntuacion) {
+	        // Crear un cuadro de diálogo
+	        JOptionPane.showMessageDialog(
+	                null,                    // Componente padre (null para un cuadro de diálogo independiente)
+	                "¡Puntuación: " + puntuacion + "!",   // Mensaje a mostrar
+	                "Puntuación del juego",  // Título del cuadro de diálogo
+	                JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (en este caso, informativo)
+	        );
+	    }
+	
+	//Agrega texto grande con sombra y color
+	public static void textoGrande(Entorno entorno,String texto, int x, int y, Color color) {
+		entorno.cambiarFont(Font.MONOSPACED,80 ,Color.BLACK);
+		entorno.escribirTexto(texto, x - 2, y - 2);
+		entorno.cambiarFont(Font.MONOSPACED,80 , color);
+		entorno.escribirTexto(texto, x, y);
+	}
+	public static void textoChico(Entorno entorno,String texto, int x, int y, Color color) {
+		entorno.cambiarFont(Font.MONOSPACED,20 ,Color.BLACK);
+		entorno.escribirTexto(texto, x - 1, y - 1);
+		entorno.escribirTexto(texto, x - 2, y - 2);
+		entorno.escribirTexto(texto, x - 1, y - 1);
+		entorno.cambiarFont(Font.MONOSPACED,20 , color);
+		entorno.escribirTexto(texto, x, y);
+	}
+
 }

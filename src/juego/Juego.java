@@ -3,6 +3,8 @@ package juego;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 // import entorno.Menu;
 // import entorno.Herramientas;
@@ -32,6 +34,8 @@ public class Juego extends InterfaceJuego {
 		this.laika.setX(entorno.ancho()/2 );
 		this.laika.setY(entorno.alto()- (laika.getHeight()/2) );
 		this.entorno.iniciar();
+		this.laika.setPuntaje(0);
+		this.laika.setEliminados(0);
 	}
 
 	public void tick() {
@@ -39,6 +43,8 @@ public class Juego extends InterfaceJuego {
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
 
+		Utilidades.textoChico(entorno,"ENEMIGOS ELIMINADOS: " + laika.getEliminados(), 10,20,Color.GREEN);
+		Utilidades.textoChico(entorno,"PUNTAJE: " + laika.getPuntaje(), entorno.ancho()-150,20,Color.GREEN);
 		// comprueba si laika se encuentra viva
 		if (!laika.isViva() && this.jugando) {
 			this.jugando = false;

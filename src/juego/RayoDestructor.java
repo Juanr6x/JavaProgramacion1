@@ -95,6 +95,7 @@ public class RayoDestructor {
 				if ( plantas[i] != null) {
 					if (Utilidades.colision(rayodestructor, plantas)) {
 				        plantas[i]= null; //Mato a la planta
+				        
 						return true; 
 					}
 				}
