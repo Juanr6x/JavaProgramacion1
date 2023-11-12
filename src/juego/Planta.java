@@ -187,7 +187,7 @@ public class Planta {
 		
 		if (planta != null) {
 			if(planta.getX() >799  || planta.getX() < 0 ||
-					planta.getY() <0 || planta.getY() > 599){
+					planta.getY() <0 || planta.getY() > 549){
 				return true;
 			}
 		}

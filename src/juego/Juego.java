@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class Juego extends InterfaceJuego {
 	private Entorno entorno;
 	private int width = 800;
-	private int height = 600;
+	private int height = 650;
 	private Calle calle;
 	private Laika laika = new Laika();
 	private Auto[] autos;
@@ -29,7 +29,8 @@ public class Juego extends InterfaceJuego {
 		this.cuadras = this.calle.getCuadras();
 		this.autos = this.calle.getAutos();
 		this.plantas = this.calle.getPlantas();
-
+		this.laika.setX(entorno.ancho()/2 );
+		this.laika.setY(entorno.alto()- (laika.getHeight()/2) );
 		this.entorno.iniciar();
 	}
 
@@ -50,6 +51,7 @@ public class Juego extends InterfaceJuego {
 
 			// Serian como los mordiscos, si se encuentran con laika, laika muere.
 			Planta.atacar(this.entorno, this.plantas, this.laika);
+			Auto.Chocar(this.entorno, this.autos, this.laika);
 		}
 		Auto.moverAutos(entorno, cuadras, autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);

@@ -4,15 +4,15 @@ import entorno.Entorno;
 import entorno.Herramientas;
 import java.awt.Image;
 import java.util.Random;
-import java.awt.Point;
+
 
 public class Calle {
 	private Cuadra[] cuadras = new Cuadra[6];
 	private Planta[] plantas = new Planta[4];
 	private Auto[] autos = new Auto[4];
 	private Image img = Herramientas.cargarImagen("imagenes/carretera.png");
-	private Point[] cordenadaenemigos;
-	// private Point[] cordenadaAutos;
+	private Punto[] cordenadaenemigos;
+	// private Punto[] cordenadaAutos;
 
 	public Calle() {
 		// Crea las manzanas
@@ -23,26 +23,35 @@ public class Calle {
 		// Crea las plantas
 		for (int i = 0; i < plantas.length; i++) {
 			Random random = new Random();
-			Point coordenada = new Point(0, 0);
+			Punto coordenada = new Punto(0, 0);
 			int RandomLadoAparicion = random.nextInt(1, 4);
 			cordenadaenemigos = Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
 			for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
-			plantas[i] = new Planta(coordenada.x, coordenada.y, RandomLadoAparicion);
+				while (ExisteCordenadaPlanta(coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
+				    coordenada = cordenadaenemigos[random.nextInt(4)];
+				}
+					
+				
+				plantas[i] = new Planta(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
+			
 		}
 
 		for (int i = 0; i < autos.length; i++) {
 			Random random = new Random();
-			Point coordenada = new Point(0, 0);
+			Punto coordenada = new Punto(0, 0);
 			int RandomLadoAparicion = random.nextInt(1, 4);
 			cordenadaenemigos = Utilidades.coordenadaAparicionAuto(RandomLadoAparicion);
 			for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
-			autos[i] = new Auto(coordenada.x, coordenada.y, RandomLadoAparicion);
+				while (ExisteCordenadaAuto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
+				    coordenada = cordenadaenemigos[random.nextInt(4)];
+				}
+				autos[i] = new Auto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
 		}
 
 	}
@@ -63,7 +72,7 @@ public class Calle {
 
 	public void dibujarse(Entorno e) {
 		// Dibuja la calle
-		e.dibujarImagen(img, 400, 300, 0, 1);
+		e.dibujarImagen(img, 400, 325, 0, 1);
 		// Dibuja las manzanas
 		for (Cuadra cuadra : cuadras) {
 			cuadra.dibujar(e);
@@ -79,5 +88,27 @@ public class Calle {
 			auto.dibujar(e);
 		}
 	}
-
+	
+	public boolean ExisteCordenadaPlanta(int x, int y, int Direccion) {
+	    if (plantas != null && plantas.length > 0) {
+	        for (int i = 0; i < plantas.length; i++) {
+	            if (plantas[i] != null && plantas[i].getX() == x && plantas[i].getY() == y && plantas[i].getSentido().sentido == Direccion) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
+	}
+	
+	public boolean ExisteCordenadaAuto(int x, int y, int Direccion) {
+	    if (autos != null && autos.length > 0) {
+	        for (int i = 0; i < autos.length; i++) {
+	            if (autos[i] != null && autos[i].getX() == x && autos[i].getY() == y && autos[i].getSentido().sentido == Direccion) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
+	}
+	
 }

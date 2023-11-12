@@ -130,5 +130,14 @@ public class Auto {
 	public int getVelocidad() {
 		return this.velocidad;
 	}
-
+	public Direccion getSentido() {
+		return direccion;
+	}
+	public static void Chocar(Entorno e, Auto[] autos, Laika laika) {
+		for (Auto auto : autos) {
+			if (Utilidades.colision(auto, laika)) {
+				laika.morir();
+			}
+		}
+	}
 }
