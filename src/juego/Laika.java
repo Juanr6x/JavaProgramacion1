@@ -33,10 +33,12 @@ public class Laika {
 	public void morir() {
 		// establecemos unos segundos de invenciilidad para que no muera al instante
 		// y el jugador se pueda ubicar.
+		//this.img = Herramientas.cargarImagen("imagenes/LaikaDead.png");
 		if (contadorInvincibility < 100)
 			return;
 		this.estaVivo = false;
-		this.velocidad = 0;
+		this.velocidad = 0;	
+		
 	}
 
 	// choca un auto, golpea una planta , o la bola de fuego
@@ -141,7 +143,7 @@ public class Laika {
 	public int getSentido() {
 		return direccion;
 	}
-	public  void  dispararRayo(Entorno entorno) {
+	public  void  dispararRayo(Entorno entorno,Planta[] plantas) {
 		
 		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			if (rayodestructor == null) {
@@ -152,12 +154,23 @@ public class Laika {
 				rayodestructor.dibujar(entorno);
 				rayodestructor.mover();
 		}
-			
-		if (rayodestructor != null  && rayodestructor.colisionRayoBordes(rayodestructor)) {
+		
+
+		
+		if (rayodestructor != null  && ( rayodestructor.colisionRayoBordes(rayodestructor) || rayodestructor.colisionRayoPlantas(rayodestructor,plantas)) ) {
+		
 			rayodestructor = null;
 		}
 		
+		
+			
 
 	 }
+	//public void colisionPlantaRayo( RayoDestructor rayo, Planta[] plantas) {
+	//	for (int i = 0; i < plantas.length; i++) {
+	//			if (Utilidades.colision(rayo, plantas)) 
+	//				plantas[i]= null; //Mato a la planta
+	//	}
+	//}
 	
 }

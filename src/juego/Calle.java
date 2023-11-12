@@ -44,14 +44,17 @@ public class Calle {
 			Punto coordenada = new Punto(0, 0);
 			int RandomLadoAparicion = random.nextInt(1, 4);
 			cordenadaenemigos = Utilidades.coordenadaAparicionAuto(RandomLadoAparicion);
+			
 			for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
-				while (ExisteCordenadaAuto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
-				    coordenada = cordenadaenemigos[random.nextInt(4)];
-				}
-				autos[i] = new Auto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
+			while (ExisteCordenadaAuto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
+			    coordenada = cordenadaenemigos[random.nextInt(4)];
+			}
+			
+			autos[i] = new Auto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
+	
 		}
 
 	}
@@ -80,12 +83,14 @@ public class Calle {
 
 		// Dibuja las plantas
 		for (Planta planta : plantas) {
-			planta.dibujar(e);
+			if (planta!= null)
+			 planta.dibujar(e);
 		}
 
 		// Dibuja los autos
 		for (Auto auto : autos) {
-			auto.dibujar(e);
+			if (auto!= null)
+				auto.dibujar(e);
 		}
 	}
 	
@@ -103,9 +108,9 @@ public class Calle {
 	public boolean ExisteCordenadaAuto(int x, int y, int Direccion) {
 	    if (autos != null && autos.length > 0) {
 	        for (int i = 0; i < autos.length; i++) {
-	            if (autos[i] != null && autos[i].getX() == x && autos[i].getY() == y && autos[i].getSentido().sentido == Direccion) {
-	                return true;
-	            }
+	        	if (autos[i] != null)
+		            if ( autos[i].getX() == x && autos[i].getY() == y && autos[i].getSentido().sentido == Direccion) 
+		                return true;
 	        }
 	    }
 	    return false;

@@ -85,4 +85,28 @@ public class BolaDeFuego {
 		}
 		return false;
 	}
+	
+	public boolean colisionBolaFuegoLaika(BolaDeFuego boladefuego,Laika laika) {
+		if (boladefuego != null) {
+			if (Utilidades.colision(boladefuego, laika)) {
+				laika.morir();
+				return true; 
+			}
+		}
+		return false;
+	}
+	public boolean colisionBolaFuegoAuto(BolaDeFuego boladefuego,Auto[] autos) {
+		if (boladefuego != null){
+			for (int i = 0; i < autos.length; i++) {
+				if(autos[i]!=null) {
+					if (Utilidades.colision(boladefuego, autos[i])) {
+						autos[i]  = null;
+						return true;
+					}
+				}
+				
+			}
+		}
+		return false;
+	}
 }

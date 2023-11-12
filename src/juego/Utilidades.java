@@ -28,12 +28,14 @@ abstract class Utilidades {
 			agregarX -= obj2.getVelocidad();
 
 		for (Cuadra ob1 : obj1) {
-			Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
-			Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
-					obj2.getWidth(),
-					obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
-				return false;
+			if (ob1 != null && obj2 != null) {
+				Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+				Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+						obj2.getWidth(),
+						obj2.getHeight());
+				if (HayInterseccion(c1,c2)) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -52,13 +54,14 @@ abstract class Utilidades {
 			agregarX -= obj2.getVelocidad();
 
 		for (Cuadra ob1 : obj1) {
-			
-			Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
-			Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
-					obj2.getWidth(),
-					obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
-				return false;
+			if (ob1 != null && obj2 != null) {
+				Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+				Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+						obj2.getWidth(),
+						obj2.getHeight());
+				if (HayInterseccion(c1,c2)) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -75,37 +78,80 @@ abstract class Utilidades {
 			agregarX += obj2.getVelocidad();
 		if (direccion == e.TECLA_IZQUIERDA)
 			agregarX -= obj2.getVelocidad();
+		if (obj2 != null) {
 
-		for (Cuadra ob1 : obj1) {
-			Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
-			Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),obj2.getWidth(),obj2.getHeight());
-			
-			
-			if (HayInterseccion(c1,c2)) {
-				return false;
+			for (Cuadra ob1 : obj1) {
+				if (ob1 != null && obj2 != null) {
+					Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
+					Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),obj2.getWidth(),obj2.getHeight());
+					
+					
+					if (HayInterseccion(c1,c2)) {
+						return false;
+					}
+				}
 			}
 		}
 		return true;
 	}
 
 	public static boolean colision(Planta obj1, Laika obj2) {
-		Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
-		Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-		if (HayInterseccion(c1,c2)) {
-			return true;
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
+			if (HayInterseccion(c1,c2)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public static boolean colision(Auto obj1, Laika obj2) {
-		Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
-		Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-		if (HayInterseccion(c1,c2)) {
-			return true;
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
+			if (HayInterseccion(c1,c2)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean colision(RayoDestructor obj1, Planta[] obj2) {
+		for (Planta ob2 : obj2) {
+			if ( ob2 != null) {
+				Cuadrado c1 = new Cuadrado(obj1.getX() , obj1.getY(),obj1.getAncho(),obj1.getAlto());
+				Cuadrado c2 = new Cuadrado(ob2.getX(), ob2.getY(), ob2.getWidth(), ob2.getHeight());
+				
+				if (HayInterseccion(c1,c2)) 
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean colision(BolaDeFuego obj1, Laika obj2) {
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
+			if (HayInterseccion(c1,c2)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
+	
+	public static boolean colision(BolaDeFuego obj1, Auto obj2) {
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
+			if (HayInterseccion(c1,c2)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,
 	// para saber donde dibujarla posteriormente
 	static Punto coordenadaCuadra(int numeroDeCalle) {

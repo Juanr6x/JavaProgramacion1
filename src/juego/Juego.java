@@ -55,13 +55,13 @@ public class Juego extends InterfaceJuego {
 		}
 		Auto.moverAutos(entorno, cuadras, autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
-		Planta.DispararPlantas(entorno, plantas);
-		laika.dispararRayo(entorno);
+		Planta.DispararPlantas(entorno, plantas,this.laika,autos);
+		laika.dispararRayo(entorno,plantas);
+
 		
 		
 			
-	//	rayodestructor = this.laika.dispararRayo(entorno, rayodestructor);
-		// intenta que dispare otra vez
+
 	
 		
 

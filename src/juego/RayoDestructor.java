@@ -88,5 +88,19 @@ public class RayoDestructor {
 		}
 		return false;
 	}
+	
+	public boolean colisionRayoPlantas(RayoDestructor rayodestructor,Planta[] plantas) {
+		if (rayodestructor != null) { 
+			for (int i = 0; i < plantas.length; i++) {
+				if ( plantas[i] != null) {
+					if (Utilidades.colision(rayodestructor, plantas)) {
+				        plantas[i]= null; //Mato a la planta
+						return true; 
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
 	

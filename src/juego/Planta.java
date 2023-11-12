@@ -53,42 +53,44 @@ public class Planta {
 
 	public static void moverPlantas(Entorno e, Cuadra[] cuadras, Planta[] plantas) {
 		for (Planta planta : plantas) {
-			if (planta.direccion.getDireccionString().equals("arriba")) {
-				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
-					if (planta.y <= 0) {
-						planta.direccion.invertirDireccion();
-						planta.y -= planta.velocidad;
+			if (planta != null ) {
+				if (planta.direccion.getDireccionString().equals("arriba")) {
+					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
+						if (planta.y <= 0) {
+							planta.direccion.invertirDireccion();
+							planta.y -= planta.velocidad;
+						}
 					}
 				}
-			}
-
-			else if (planta.direccion.getDireccionString().equals("abajo")) {
-				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
-					if (planta.y >= 600) {
-						planta.direccion.invertirDireccion();
-						planta.y += planta.velocidad;
+	
+				else if (planta.direccion.getDireccionString().equals("abajo")) {
+					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
+						if (planta.y >= 600) {
+							planta.direccion.invertirDireccion();
+							planta.y += planta.velocidad;
+						}
 					}
 				}
-			}
-
-			else if (planta.direccion.getDireccionString().equals("derecha")) {
-				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
-					if (planta.x >= 800) {
-						planta.direccion.invertirDireccion();
-						planta.girarIzquierda();
+	
+				else if (planta.direccion.getDireccionString().equals("derecha")) {
+					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
+						if (planta.x >= 800) {
+							planta.direccion.invertirDireccion();
+							planta.girarIzquierda();
+						}
 					}
 				}
-			}
-
-			else if (planta.direccion.getDireccionString().equals("izquierda")) {
-				if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
-					if (planta.x <= 0) {
-						planta.direccion.invertirDireccion();
-						planta.girarDerecha();
+	
+				else if (planta.direccion.getDireccionString().equals("izquierda")) {
+					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
+						if (planta.x <= 0) {
+							planta.direccion.invertirDireccion();
+							planta.girarDerecha();
+						}
 					}
 				}
+				planta.avanzar();
 			}
-			planta.avanzar();
 		}
 	}
 
@@ -167,19 +169,21 @@ public class Planta {
 	public BolaDeFuego SetBolaDeFuego(BolaDeFuego VBolaDeFuego ) {
 		return boladefuego = VBolaDeFuego;
 	}
-	public static void DispararPlantas(Entorno e, Planta[] plantas) {
+	public static void DispararPlantas(Entorno e, Planta[] plantas,Laika laika,Auto[] autos) {
 		for (int i = 0; i < plantas.length; i++) {
-			if (plantas[i].getBolaDeFuego() == null) {
-				plantas[i].SetBolaDeFuego( plantas[i].boladefuego = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30,	plantas[i].getSentido().sentido, 5));
+			if (plantas[i] != null) {
+				if (plantas[i].getBolaDeFuego() == null) {
+					plantas[i].SetBolaDeFuego( plantas[i].boladefuego = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30,	plantas[i].getSentido().sentido, 5));
+				}
+				if (plantas[i].getBolaDeFuego() != null) {
+					plantas[i].boladefuego.dibujar(e);
+					plantas[i].boladefuego.mover();
+				}
+				
+				if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego) && plantas[i].colisionPlantaBordes(plantas[i]) ||  plantas[i].boladefuego.colisionBolaFuegoLaika(plantas[i].boladefuego,laika ) ||  plantas[i].boladefuego.colisionBolaFuegoAuto(plantas[i].boladefuego,autos)) {
+					plantas[i].SetBolaDeFuego( null);
+				} 
 			}
-			if (plantas[i].getBolaDeFuego() != null) {
-				plantas[i].boladefuego.dibujar(e);
-				plantas[i].boladefuego.mover();
-			}
-			
-			if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego) && plantas[i].colisionPlantaBordes(plantas[i]) ) {
-				plantas[i].SetBolaDeFuego( null);
-			} 
 			
 		}
 	}
@@ -193,4 +197,6 @@ public class Planta {
 		}
 		return false;
 	}
+	
+
 }

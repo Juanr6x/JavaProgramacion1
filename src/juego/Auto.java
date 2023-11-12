@@ -49,43 +49,46 @@ public class Auto {
 
 	public static void moverAutos(Entorno e, Cuadra[] cuadras, Auto[] autos) {
 		for (Auto auto : autos) {
-			if (auto.direccion.getDireccionString().equals("arriba")) {
-				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ARRIBA)) {
-					if (auto.y <= 0) {
-						auto.girarImagen();
-						auto.direccion.invertirDireccion();
+			if (auto != null ) {
+				if (auto.direccion.getDireccionString().equals("arriba")) {
+					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ARRIBA)) {
+						if (auto.y <= 0) {
+							auto.girarImagen();
+							auto.direccion.invertirDireccion();
+						}
 					}
 				}
-			}
+			
+				else if (auto.direccion.getDireccionString().equals("abajo")) {
+					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ABAJO)) {
+						if (auto.y >= 600) {
+							auto.girarImagen();
+							auto.direccion.invertirDireccion();
+						}
+					}
+	
+				}
 
-			else if (auto.direccion.getDireccionString().equals("abajo")) {
-				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ABAJO)) {
-					if (auto.y >= 600) {
-						auto.girarImagen();
-						auto.direccion.invertirDireccion();
+				else if (auto.direccion.getDireccionString().equals("derecha")) {
+					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_DERECHA)) {
+						if (auto.x >= 800) {
+							auto.girarImagen();
+							auto.direccion.invertirDireccion();
+						}
 					}
 				}
 
-			}
-
-			else if (auto.direccion.getDireccionString().equals("derecha")) {
-				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_DERECHA)) {
-					if (auto.x >= 800) {
-						auto.girarImagen();
-						auto.direccion.invertirDireccion();
+				else if (auto.direccion.getDireccionString().equals("izquierda")) {
+					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_IZQUIERDA)) {
+						if (auto.x <= 0) {
+							auto.girarImagen();
+							auto.direccion.invertirDireccion();
+						}
 					}
 				}
-			}
-
-			else if (auto.direccion.getDireccionString().equals("izquierda")) {
-				if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_IZQUIERDA)) {
-					if (auto.x <= 0) {
-						auto.girarImagen();
-						auto.direccion.invertirDireccion();
-					}
-				}
-			}
+			
 			auto.avanzar();
+			}
 		}
 
 	}
