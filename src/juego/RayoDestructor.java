@@ -1,6 +1,8 @@
 package juego;
 
 import java.awt.Image;
+import java.util.Random;
+
 import entorno.Entorno;
 import entorno.Herramientas;
 
@@ -82,7 +84,7 @@ public class RayoDestructor {
 	public boolean colisionRayoBordes(RayoDestructor rayodestructor) {
 		if (rayodestructor != null) {
 			if(rayodestructor.getX() >799  || rayodestructor.getX() < 0 ||
-					rayodestructor.getY() <0 || rayodestructor.getY() > 599){
+					rayodestructor.getY() <0 || rayodestructor.getY() > 649){
 				return true;
 			}
 		}
@@ -90,12 +92,26 @@ public class RayoDestructor {
 	}
 	
 	public boolean colisionRayoPlantas(RayoDestructor rayodestructor,Planta[] plantas) {
+		Punto[] cordenadaenemigos;
 		if (rayodestructor != null) { 
 			for (int i = 0; i < plantas.length; i++) {
 				if ( plantas[i] != null) {
-					if (Utilidades.colision(rayodestructor, plantas)) {
+					if (Utilidades.colision(rayodestructor, plantas[i])) {
 				        plantas[i]= null; //Mato a la planta
-				        
+				        //prodia crar una nueva  planta aqui asi mantengo la cantidad en el 
+				        Random random = new Random();
+						Punto coordenada = new Punto(0, 0);
+						int RandomLadoAparicion = random.nextInt(1, 4);
+						cordenadaenemigos = Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
+						for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
+							if (x == RandomLadoAparicion)
+								coordenada = cordenadaenemigos[random.nextInt(4)];
+						}
+						while (Utilidades.ExisteCordenadaPlanta(plantas,coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
+							    coordenada = cordenadaenemigos[random.nextInt(4)];
+							}	
+						plantas[i] = new Planta(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
+
 						return true; 
 					}
 				}

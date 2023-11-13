@@ -120,16 +120,15 @@ abstract class Utilidades {
 		return false;
 	}
 	
-	public static boolean colision(RayoDestructor obj1, Planta[] obj2) {
-		for (Planta ob2 : obj2) {
-			if ( ob2 != null) {
-				Cuadrado c1 = new Cuadrado(obj1.getX() , obj1.getY(),obj1.getAncho(),obj1.getAlto());
-				Cuadrado c2 = new Cuadrado(ob2.getX(), ob2.getY(), ob2.getWidth(), ob2.getHeight());
-				
-				if (HayInterseccion(c1,c2)) 
-					return true;
-			}
+	public static boolean colision(RayoDestructor obj1, Planta obj2) {
+	
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX() , obj1.getY(),obj1.getAncho(),obj1.getAlto());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());		
+			if (HayInterseccion(c1,c2)) 
+				return true;
 		}
+
 		return false;
 	}
 	
@@ -194,16 +193,16 @@ abstract class Utilidades {
 		Punto[] listCordenadas = new Punto[4];
 
 		if (direccion == 1) {
-			listCordenadas[0] = new Punto(30, 30);
-			listCordenadas[1] = new Punto(280, 30);
-			listCordenadas[2] = new Punto(530, 30);
+			listCordenadas[0] = new Punto(40, 30);
+			listCordenadas[1] = new Punto(265, 30);
+			listCordenadas[2] = new Punto(510, 30);
 			listCordenadas[3] = new Punto(760, 30);
 
 		}
 		if (direccion == 2) {
-			listCordenadas[0] = new Punto(30, 760);
-			listCordenadas[1] = new Punto(280, 760);
-			listCordenadas[2] = new Punto(530, 760);
+			listCordenadas[0] = new Punto(40, 760);
+			listCordenadas[1] = new Punto(265, 760);
+			listCordenadas[2] = new Punto(510, 760);
 			listCordenadas[3] = new Punto(760, 760);
 		}
 		if (direccion == 3) {
@@ -273,7 +272,7 @@ abstract class Utilidades {
 	        JOptionPane.showMessageDialog(
 	                null,                    // Componente padre (null para un cuadro de diálogo independiente)
 	                "¡Puntuación: " + puntuacion + "!",   // Mensaje a mostrar
-	                "Puntuación del juego",  // Título del cuadro de diálogo
+	                "GAME OVER",  // Título del cuadro de diálogo
 	                JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (en este caso, informativo)
 	        );
 	    }
@@ -292,6 +291,16 @@ abstract class Utilidades {
 		entorno.escribirTexto(texto, x - 1, y - 1);
 		entorno.cambiarFont(Font.MONOSPACED,20 , color);
 		entorno.escribirTexto(texto, x, y);
+	}
+	public static boolean ExisteCordenadaPlanta(Planta[] plantas,int x, int y, int Direccion) {
+	    if (plantas != null && plantas.length > 0) {
+	        for (int i = 0; i < plantas.length; i++) {
+	            if (plantas[i] != null && plantas[i].getX() == x && plantas[i].getY() == y && plantas[i].getSentido().sentido == Direccion) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
 	}
 
 }

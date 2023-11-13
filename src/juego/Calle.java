@@ -30,7 +30,7 @@ public class Calle {
 				if (x == RandomLadoAparicion)
 					coordenada = cordenadaenemigos[random.nextInt(4)];
 			}
-				while (ExisteCordenadaPlanta(coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
+				while (Utilidades.ExisteCordenadaPlanta(plantas,coordenada.getX(), coordenada.getY(), RandomLadoAparicion)) {
 				    coordenada = cordenadaenemigos[random.nextInt(4)];
 				}
 					
@@ -94,16 +94,7 @@ public class Calle {
 		}
 	}
 	
-	public boolean ExisteCordenadaPlanta(int x, int y, int Direccion) {
-	    if (plantas != null && plantas.length > 0) {
-	        for (int i = 0; i < plantas.length; i++) {
-	            if (plantas[i] != null && plantas[i].getX() == x && plantas[i].getY() == y && plantas[i].getSentido().sentido == Direccion) {
-	                return true;
-	            }
-	        }
-	    }
-	    return false;
-	}
+
 	
 	public boolean ExisteCordenadaAuto(int x, int y, int Direccion) {
 	    if (autos != null && autos.length > 0) {

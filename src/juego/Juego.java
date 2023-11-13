@@ -51,8 +51,10 @@ public class Juego extends InterfaceJuego {
 			// TODO
 			// Utilidades.gameOver()
 			System.out.println("Game Over");
+			Utilidades.mostrarPuntuacion(laika.getPuntaje());
+			volverAlMenu();
 		} else {
-			// Mueve a Laika
+			// Mueve a Laika;
 			this.laika.mover(entorno, this.calle.getCuadras());
 
 			// Serian como los mordiscos, si se encuentran con laika, laika muere.
