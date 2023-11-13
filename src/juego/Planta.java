@@ -40,20 +40,9 @@ public class Planta {
 		this.hitbox = new Hitbox(estaVivo, this.x, this.y, this.width, this.height);
 	}
 
-	public static Planta[] generar(int cantidad) {
-		plantas = new Planta[cantidad];
-		for (int i = 0; i < cantidad; i++) {
-			Random random = new Random();
-			int xRandom = random.nextInt(750);
-			int yRandom = random.nextInt(550);
-			plantas[i] = new Planta(xRandom, yRandom, 1);
-		}
-		return plantas;
-	}
-
 	public static void moverPlantas(Entorno e, Cuadra[] cuadras, Planta[] plantas) {
 		for (Planta planta : plantas) {
-			if (planta != null ) {
+			if (planta != null) {
 				if (planta.direccion.getDireccionString().equals("arriba")) {
 					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ARRIBA)) {
 						if (planta.y <= 0) {
@@ -62,7 +51,7 @@ public class Planta {
 						}
 					}
 				}
-	
+
 				else if (planta.direccion.getDireccionString().equals("abajo")) {
 					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_ABAJO)) {
 						if (planta.y >= 600) {
@@ -71,7 +60,7 @@ public class Planta {
 						}
 					}
 				}
-	
+
 				else if (planta.direccion.getDireccionString().equals("derecha")) {
 					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_DERECHA)) {
 						if (planta.x >= 800) {
@@ -80,7 +69,7 @@ public class Planta {
 						}
 					}
 				}
-	
+
 				else if (planta.direccion.getDireccionString().equals("izquierda")) {
 					if (Utilidades.sePuedeMover(e, cuadras, planta, e.TECLA_IZQUIERDA)) {
 						if (planta.x <= 0) {
@@ -116,7 +105,6 @@ public class Planta {
 		}
 	}
 
-	
 	public void dibujar(Entorno e) {
 		e.dibujarImagen(this.imagen, this.x, this.y, 0, this.escala);
 	}
@@ -161,42 +149,48 @@ public class Planta {
 	public Direccion getSentido() {
 		return direccion;
 	}
-	
+
 	public BolaDeFuego getBolaDeFuego() {
 		return boladefuego;
 	}
-	
-	public BolaDeFuego SetBolaDeFuego(BolaDeFuego VBolaDeFuego ) {
+
+	public BolaDeFuego SetBolaDeFuego(BolaDeFuego VBolaDeFuego) {
 		return boladefuego = VBolaDeFuego;
 	}
-	public static void DispararPlantas(Entorno e, Planta[] plantas,Laika laika,Auto[] autos) {
+
+	public static void DispararPlantas(Entorno e, Planta[] plantas, Laika laika, Auto[] autos) {
 		for (int i = 0; i < plantas.length; i++) {
 			if (plantas[i] != null) {
 				if (plantas[i].getBolaDeFuego() == null) {
-					plantas[i].SetBolaDeFuego( plantas[i].boladefuego = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30, 30,	plantas[i].getSentido().sentido, 5));
+					plantas[i].SetBolaDeFuego(plantas[i].boladefuego = new BolaDeFuego(plantas[i].getX(), plantas[i].getY(), 30,
+							30, plantas[i].getSentido().sentido, 5));
 				}
 				if (plantas[i].getBolaDeFuego() != null) {
 					plantas[i].boladefuego.dibujar(e);
 					plantas[i].boladefuego.mover();
 				}
-				
-				if (plantas[i].getBolaDeFuego() != null && plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego) && plantas[i].colisionPlantaBordes(plantas[i]) ||  plantas[i].boladefuego.colisionBolaFuegoLaika(plantas[i].boladefuego,laika ) ||  plantas[i].boladefuego.colisionBolaFuegoAuto(plantas[i].boladefuego,autos)) {
-					plantas[i].SetBolaDeFuego( null);
-				} 
+
+				if (plantas[i].getBolaDeFuego() != null
+						&& plantas[i].boladefuego.colisionBolaFuegoBordes(plantas[i].boladefuego)
+						&& plantas[i].colisionPlantaBordes(plantas[i])
+						|| plantas[i].boladefuego.colisionBolaFuegoLaika(plantas[i].boladefuego, laika)
+						|| plantas[i].boladefuego.colisionBolaFuegoAuto(plantas[i].boladefuego, autos)) {
+					plantas[i].SetBolaDeFuego(null);
+				}
 			}
-			
+
 		}
 	}
-	public boolean colisionPlantaBordes( Planta planta) {
-		
+
+	public boolean colisionPlantaBordes(Planta planta) {
+
 		if (planta != null) {
-			if(planta.getX() > 799 + this.width   || planta.getX() < 0 ||
-					planta.getY() <0 || planta.getY() > 599 ){
+			if (planta.getX() > 799 + this.width || planta.getX() < 0 ||
+					planta.getY() < 0 || planta.getY() > 599) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
 
 }

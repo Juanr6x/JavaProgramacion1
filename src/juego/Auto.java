@@ -1,6 +1,7 @@
 package juego;
 
 import java.awt.Image;
+import java.util.Random;
 
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -14,7 +15,6 @@ public class Auto {
 	private Direccion direccion;
 	private double escala = 0.30;
 	private Image img = Herramientas.cargarImagen("imagenes/auto-arriba.png");
-	// private int chocaste = 0;
 
 	public Auto(int x, int y, int direccion) {
 		this.x = x;
@@ -47,9 +47,33 @@ public class Auto {
 
 	}
 
+	public static void crearAutos(Auto[] autos) {
+		Punto[] cordenadaenemigos;
+		for (int i = 0; i < autos.length; i++) {
+			if (autos[i] == null) {
+				autos[i] = null; // Mato a la planta
+				// podia crear una nueva planta aqui asi mantengo la cantidad en el
+				Random random = new Random();
+				Punto coordenada = new Punto(0, 0);
+				int RandomLadoAparicion = random.nextInt(1, 4);
+				cordenadaenemigos = Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
+				for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
+					if (x == RandomLadoAparicion)
+						coordenada = cordenadaenemigos[random.nextInt(4)];
+				}
+				while (Utilidades.ExisteCordenadaAuto(autos, coordenada.getX(), coordenada.getY(),
+						RandomLadoAparicion)) {
+					coordenada = cordenadaenemigos[random.nextInt(4)];
+				}
+				autos[i] = new Auto(coordenada.getX(), coordenada.getY(), RandomLadoAparicion);
+
+			}
+		}
+	}
+
 	public static void moverAutos(Entorno e, Cuadra[] cuadras, Auto[] autos) {
 		for (Auto auto : autos) {
-			if (auto != null ) {
+			if (auto != null) {
 				if (auto.direccion.getDireccionString().equals("arriba")) {
 					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ARRIBA)) {
 						if (auto.y <= 0) {
@@ -58,7 +82,7 @@ public class Auto {
 						}
 					}
 				}
-			
+
 				else if (auto.direccion.getDireccionString().equals("abajo")) {
 					if (Utilidades.sePuedeMover(e, cuadras, auto, e.TECLA_ABAJO)) {
 						if (auto.y >= 600) {
@@ -66,7 +90,7 @@ public class Auto {
 							auto.direccion.invertirDireccion();
 						}
 					}
-	
+
 				}
 
 				else if (auto.direccion.getDireccionString().equals("derecha")) {
@@ -86,8 +110,8 @@ public class Auto {
 						}
 					}
 				}
-			
-			auto.avanzar();
+
+				auto.avanzar();
 			}
 		}
 
@@ -133,9 +157,11 @@ public class Auto {
 	public int getVelocidad() {
 		return this.velocidad;
 	}
+
 	public Direccion getSentido() {
 		return direccion;
 	}
+
 	public static void Chocar(Entorno e, Auto[] autos, Laika laika) {
 		for (Auto auto : autos) {
 			if (Utilidades.colision(auto, laika)) {

@@ -13,13 +13,14 @@ public class Laika {
 	private double escala = 0.037;
 	private int velocidad = 3;
 	private int direccion;
-	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");;
+	private Image img = Herramientas.cargarImagen("imagenes/Laika.png");
 	private Hitbox hitbox;
 	private int Puntaje;
 	private int Eliminados;
 	private boolean estaVivo = true;
 	private int contadorInvincibility = 0;
-	private RayoDestructor  rayodestructor ;
+	private RayoDestructor rayodestructor;
+
 	// Constructor de Laika
 	public Laika() {
 		this.width = (int) (img.getWidth(null) * escala);
@@ -34,12 +35,12 @@ public class Laika {
 	public void morir() {
 		// establecemos unos segundos de invenciilidad para que no muera al instante
 		// y el jugador se pueda ubicar.
-		//this.img = Herramientas.cargarImagen("imagenes/LaikaDead.png");
+		// this.img = Herramientas.cargarImagen("imagenes/LaikaDead.png");
 		if (contadorInvincibility < 100)
 			return;
 		this.estaVivo = false;
-		this.velocidad = 0;	
-		
+		this.velocidad = 0;
+
 	}
 
 	// choca un auto, golpea una planta , o la bola de fuego
@@ -51,48 +52,43 @@ public class Laika {
 
 	public void mover(Entorno e, Cuadra[] cuadras) {
 
-		if (e.estaPresionada(e.TECLA_ARRIBA) 
-				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ARRIBA)
-				) {
-			if (y - (this.getHeight()/2) <= 0)
+		if (e.estaPresionada(e.TECLA_ARRIBA)
+				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ARRIBA)) {
+			if (y - (this.getHeight() / 2) <= 0)
 				return;
 			y -= velocidad;
-			direccion = 1 ;
+			direccion = 1;
 			hitbox.mover(x, y);
 		}
-	
 
-		if (e.estaPresionada(e.TECLA_ABAJO) 
-				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ABAJO)
-			) {
-			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight() + (this.getHeight()/2))
+		if (e.estaPresionada(e.TECLA_ABAJO)
+				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_ABAJO)) {
+			if (y + img.getHeight(e) * escala * 1.85 >= e.getHeight() + (this.getHeight() / 2))
 				return;
 			y += velocidad;
-			direccion = 2 ;
+			direccion = 2;
 			hitbox.mover(x, y);
 
 		}
 
-		if (e.estaPresionada(e.TECLA_DERECHA) 
-				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_DERECHA)
-			) 	{
+		if (e.estaPresionada(e.TECLA_DERECHA)
+				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_DERECHA)) {
 			girarDerecha();
 			if (x + img.getWidth(e) * escala * 1.90 >= e.getWidth() + this.getWidth())
 				return;
 			x += velocidad;
-			direccion = 3 ;
+			direccion = 3;
 			hitbox.mover(x, y);
 
 		}
 
 		if (e.estaPresionada(e.TECLA_IZQUIERDA)
-				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_IZQUIERDA)
-				) {
+				&& Utilidades.sePuedeMover(e, cuadras, this, e.TECLA_IZQUIERDA)) {
 			girarIzquierda();
-			if (x - (this.getWidth()/2) < 0)
+			if (x - (this.getWidth() / 2) < 0)
 				return;
 			x -= velocidad;
-			direccion = 4 ;
+			direccion = 4;
 		}
 		hitbox.mover(x, y);
 
@@ -130,6 +126,7 @@ public class Laika {
 	public int setY(int Y) {
 		return y = Y;
 	}
+
 	public int getHeight() {
 		return this.height;
 	}
@@ -141,10 +138,11 @@ public class Laika {
 	public int getVelocidad() {
 		return velocidad;
 	}
+
 	public int getSentido() {
 		return direccion;
 	}
-	
+
 	public int getPuntaje() {
 		return Puntaje;
 	}
@@ -152,6 +150,7 @@ public class Laika {
 	public int setPuntaje(int puntaje) {
 		return Puntaje = puntaje;
 	}
+
 	public int getEliminados() {
 		return Eliminados;
 	}
@@ -160,32 +159,25 @@ public class Laika {
 		return Eliminados = eliminados;
 	}
 
-	
-
-	public  void  dispararRayo(Entorno entorno,Planta[] plantas) {
-		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
+	public void dispararRayo(Entorno entorno, Planta[] plantas) {
+		if (entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			if (rayodestructor == null) {
 				rayodestructor = new RayoDestructor(x, y, 30, 30, direccion, 10);
 			}
 		}
 		if (rayodestructor != null) {
-				rayodestructor.dibujar(entorno);
-				rayodestructor.mover();
+			rayodestructor.dibujar(entorno);
+			rayodestructor.mover();
 		}
-		
 
-		
-		if (rayodestructor != null ) {
-			if ( rayodestructor.colisionRayoPlantas(rayodestructor,plantas)) {
+		if (rayodestructor != null) {
+			if (rayodestructor.colisionRayoPlantas(rayodestructor, plantas)) {
 				this.Puntaje = this.Puntaje + 5;
 				this.Eliminados = this.Eliminados + 1;
 				rayodestructor = null;
-			}
-			else if ( rayodestructor.colisionRayoBordes(rayodestructor))			
+			} else if (rayodestructor.colisionRayoBordes(rayodestructor))
 				rayodestructor = null;
 		}
-		
-			
 
-	 }
+	}
 }

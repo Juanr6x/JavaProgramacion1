@@ -317,4 +317,17 @@ abstract class Utilidades {
 		return false;
 	}
 
+	public static boolean ExisteCordenadaAuto(Auto[] autos, int x, int y, int Direction) {
+
+		if (autos != null && autos.length > 0) {
+			for (int i = 0; i < autos.length; i++) {
+				if (autos[i] != null && autos[i].getX() == x && autos[i].getY() == y
+						&& autos[i].getSentido().sentido == Direction) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 }

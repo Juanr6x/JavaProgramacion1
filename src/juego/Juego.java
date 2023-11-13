@@ -5,8 +5,6 @@ import entorno.InterfaceJuego;
 
 import java.awt.Color;
 import java.awt.event.*;
-// import entorno.Menu;
-// import entorno.Herramientas;
 
 import javax.swing.JFrame;
 
@@ -47,11 +45,10 @@ public class Juego extends InterfaceJuego {
 		Utilidades.textoChico(entorno, "ENEMIGOS ELIMINADOS: " + laika.getEliminados(), 10, 20, Color.GREEN);
 		Utilidades.textoChico(entorno, "PUNTAJE: " + laika.getPuntaje(), entorno.ancho() - 150, 20, Color.GREEN);
 
-		// comprueba si laika se encuentra viva
+		// comprueba si laika se encuentra viva,
+		// si no lo está, termina el juego
 		if (!laika.isViva() && this.jugando) {
 			this.jugando = false;
-			// TODO
-			// Utilidades.gameOver()
 			System.out.println("Game Over");
 			Utilidades.mostrarPuntuacion(laika.getPuntaje());
 			volverAlMenu();
@@ -67,7 +64,7 @@ public class Juego extends InterfaceJuego {
 		Planta.moverPlantas(entorno, cuadras, plantas);
 		Planta.DispararPlantas(entorno, plantas, this.laika, autos);
 		laika.dispararRayo(entorno, plantas);
-
+		Auto.crearAutos(autos);
 	}
 
 	public void windowClosing(WindowEvent e) {
@@ -78,8 +75,7 @@ public class Juego extends InterfaceJuego {
 		// Cierra la ventana actual del juego
 		entorno.dispose();
 		// Crea una nueva instancia de la ventana del menú
-		Menu menu = new Menu();
-		menu = null;
+		System.out.close();
 	}
 
 	public static void main(String[] args) {
