@@ -170,17 +170,22 @@ public class Laika {
 			rayodestructor.mover();
 		}
 
-		if (rayodestructor != null) {
-			if (rayodestructor.colisionRayoBolaDeFuego(rayodestructor, plantas) > -1) {
-				plantas[rayodestructor.colisionRayoBolaDeFuego(rayodestructor, plantas)].eliminarBolaDeFuego();
-				rayodestructor = null;
+		try {
+			if (rayodestructor != null) {
+				if (rayodestructor.colisionRayoBolaDeFuego(rayodestructor, plantas) > -1) {
+					plantas[rayodestructor.colisionRayoBolaDeFuego(rayodestructor,
+							plantas)].eliminarBolaDeFuego();
+					rayodestructor = null;
+				}
+				if (rayodestructor.colisionRayoPlantas(rayodestructor, plantas)) {
+					this.Puntaje = this.Puntaje + 5;
+					this.Eliminados = this.Eliminados + 1;
+					rayodestructor = null;
+				} else if (rayodestructor.colisionRayoBordes(rayodestructor))
+					rayodestructor = null;
+
 			}
-			if (rayodestructor.colisionRayoPlantas(rayodestructor, plantas)) {
-				this.Puntaje = this.Puntaje + 5;
-				this.Eliminados = this.Eliminados + 1;
-				rayodestructor = null;
-			} else if (rayodestructor.colisionRayoBordes(rayodestructor))
-				rayodestructor = null;
+		} catch (Exception e) {
 		}
 
 	}
