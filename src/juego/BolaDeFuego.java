@@ -79,7 +79,7 @@ public class BolaDeFuego {
 		
 		if (bolabefuego != null) {
 			if(bolabefuego.getX() >799  || bolabefuego.getX() < 0 ||
-					bolabefuego.getY() <0 || bolabefuego.getY() > 599){
+					bolabefuego.getY() <0 || bolabefuego.getY() > 649){
 				return true;
 			}
 		}

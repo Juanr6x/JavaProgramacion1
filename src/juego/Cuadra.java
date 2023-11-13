@@ -1,8 +1,6 @@
 package juego;
 
 import entorno.Herramientas;
-
-import java.awt.Color;
 import java.awt.Image;
 import entorno.Entorno;
 
@@ -14,7 +12,6 @@ public class Cuadra {
 	private int escala = 1;
 	private int width;
 	private int height;
-	private Color color;
 	public Cuadra(int numeroDeCalle) {
 		this.cuadra = Herramientas.cargarImagen("imagenes/Manzana" + numeroDeCalle + ".png");
 		this.width = this.cuadra.getWidth(null) * escala;

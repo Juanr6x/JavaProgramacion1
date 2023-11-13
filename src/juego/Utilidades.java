@@ -2,7 +2,6 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.JOptionPane;
 
@@ -154,6 +153,17 @@ abstract class Utilidades {
 		}
 		return false;
 	}
+	
+	public static boolean colision(RayoDestructor obj1, BolaDeFuego obj2) {
+		if (obj1 != null && obj2 != null) {
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getAncho (), obj2.getAlto());
+			if (HayInterseccion(c1,c2)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,
 	// para saber donde dibujarla posteriormente
 	static Punto coordenadaCuadra(int numeroDeCalle) {
@@ -206,16 +216,16 @@ abstract class Utilidades {
 			listCordenadas[3] = new Punto(760, 760);
 		}
 		if (direccion == 3) {
-			listCordenadas[0] = new Punto(30, 30);
-			listCordenadas[1] = new Punto(30, 00);
-			listCordenadas[2] = new Punto(30, 570);
-			listCordenadas[3] = new Punto(30, 00);
+			listCordenadas[0] = new Punto(30, 50);
+			listCordenadas[1] = new Punto(30, 325);
+			listCordenadas[2] = new Punto(30, 600);
+			listCordenadas[3] = new Punto(30, 600);
 		}
 		if (direccion == 4) {
-			listCordenadas[0] = new Punto(760, 30);
-			listCordenadas[1] = new Punto(760, 300);
-			listCordenadas[2] = new Punto(760, 570);
-			listCordenadas[3] = new Punto(760, 760);
+			listCordenadas[0] = new Punto(790, 50);
+			listCordenadas[1] = new Punto(790, 325);
+			listCordenadas[2] = new Punto(790, 600);
+			listCordenadas[3] = new Punto(790, 600);
 		}
 		return listCordenadas;
 	}

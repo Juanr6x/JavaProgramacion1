@@ -40,16 +40,19 @@ public class RayoDestructor {
 	}
 	void dibujar(Entorno entorno) {
 		double angulo = 0;
-		if (this.sentido == 1) {//izq
-			angulo = 180;
-		}
-		if (this.sentido == 2) {//arriba
-			angulo = 270;
-		}
-		if (this.sentido == 3) {//abajo
+		if (this.sentido == 1) {//abajo 
 			angulo = 90;
 		}
-		entorno.dibujarImagenConCentro(imagen, x,y+10, 30, 30, 0,0.10);
+		if (this.sentido == 2) {//arriba
+			angulo = 90;
+		}
+		if (this.sentido == 3) {//Derecha
+			angulo = 0;
+		}
+		if (this.sentido == 4) {//Izquierda
+			angulo = 0;
+		}
+		entorno.dibujarImagenConCentro(imagen, x,y+10, 30, 30,  angulo,0.10);
 	}
 	void mover() {
 		if(sentido == 1) {

@@ -163,7 +163,6 @@ public class Laika {
 	
 
 	public  void  dispararRayo(Entorno entorno,Planta[] plantas) {
-		boolean MatoPlanta;
 		if(entorno.sePresiono(entorno.TECLA_ESPACIO)) {
 			if (rayodestructor == null) {
 				rayodestructor = new RayoDestructor(x, y, 30, 30, direccion, 10);
@@ -189,11 +188,4 @@ public class Laika {
 			
 
 	 }
-	//public void colisionPlantaRayo( RayoDestructor rayo, Planta[] plantas) {
-	//	for (int i = 0; i < plantas.length; i++) {
-	//			if (Utilidades.colision(rayo, plantas)) 
-	//				plantas[i]= null; //Mato a la planta
-	//	}
-	//}
-	
 }

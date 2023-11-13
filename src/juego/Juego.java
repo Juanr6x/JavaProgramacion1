@@ -2,7 +2,7 @@ package juego;
 
 import entorno.Entorno;
 import entorno.InterfaceJuego;
-import javax.swing.*;
+
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -20,7 +20,7 @@ public class Juego extends InterfaceJuego {
 	private Cuadra[] cuadras;
 	private boolean jugando = true;
 
-	Juego() {
+	Juego(Configuracion configuracion) {
 		// Inicio del juego
 		this.entorno = new Entorno(this, "Plantas Invasoras", width, height);
 
@@ -84,6 +84,7 @@ public class Juego extends InterfaceJuego {
 
         // Crea una nueva instancia de la ventana del menú
         Menu menu = new Menu();
+        menu= null;
     }
 	
 

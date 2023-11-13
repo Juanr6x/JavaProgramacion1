@@ -1,6 +1,6 @@
 package juego;
 
-import entorno.Entorno;
+
 import entorno.Herramientas;
 
 import javax.swing.ImageIcon;
@@ -13,8 +13,9 @@ import entorno.InterfaceJuego;
 public class Menu extends JPanel {
     private Image fondo;
     private ImageIcon boton1, boton2,boton3;
-    private JButton boton1Btn, boton2Btn,boton3Btn;
-    private InterfaceJuego juego; 
+    private Configuracion.Dificultad dif;
+    private InterfaceJuego juego;
+    private Configuracion config = new Configuracion(false,dif.FACIL) ;
     public Menu() {
         // Carga el fondo
         fondo =  Herramientas.cargarImagen("imagenes/fondomenu1.png");
@@ -22,11 +23,11 @@ public class Menu extends JPanel {
         // Carga las imágenes de los botones
         ImageIcon boton1 = new ImageIcon("imagenes/btnjugar.png");
         ImageIcon boton2 = new ImageIcon("boton2.png");
-        ImageIcon boton3 = new ImageIcon("boton2.png");
+ //       ImageIcon boton3 = new ImageIcon("boton2.png");
         // Crea los botones
         JButton boton1Btn = new JButton(boton1);
         JButton boton2Btn = new JButton(boton2);
-        JButton boton3Btn = new JButton(boton2);
+//        JButton boton3Btn = new JButton(boton2);
         // Ajusta el tamaño de los botones
         Dimension buttonSize = new Dimension(150, 50);
         boton1Btn.setPreferredSize(buttonSize);
@@ -42,7 +43,8 @@ public class Menu extends JPanel {
         boton1Btn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	Juego juego = new Juego();
+            	juego = new Juego(config);
+            	juego = null;
             	
             }
         });
@@ -85,5 +87,10 @@ public class Menu extends JPanel {
         frame.add(panel);
 
         frame.setVisible(true);
+    }
+    public enum Dificultad {
+        FACIL,
+        MEDIO,
+        DIFICIL
     }
 }
