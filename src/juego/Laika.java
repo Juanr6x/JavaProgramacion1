@@ -36,7 +36,7 @@ public class Laika {
 		// establecemos unos segundos de invenciilidad para que no muera al instante
 		// y el jugador se pueda ubicar.
 		// this.img = Herramientas.cargarImagen("imagenes/LaikaDead.png");
-		if (contadorInvincibility < 100)
+		if (contadorInvincibility < 200)
 			return;
 		this.estaVivo = false;
 		this.velocidad = 0;
