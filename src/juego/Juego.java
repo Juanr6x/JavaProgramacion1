@@ -35,6 +35,9 @@ public class Juego extends InterfaceJuego {
 		this.entorno.iniciar();
 		this.laika.setPuntaje(0);
 		this.laika.setEliminados(0);
+		if( configuracion.getSonido())
+			Utilidades.SonidoJuego();
+
 	}
 
 	public void tick() {

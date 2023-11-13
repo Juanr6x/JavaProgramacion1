@@ -329,5 +329,18 @@ abstract class Utilidades {
 		}
 		return false;
 	}
+		public static void SonidoJuego() {
+		
+		Clip clip =  entorno.Herramientas.cargarSonido("Sonidos/musica_fondo.wav");
+		if (clip != null) {
+            clip.start(); // Iniciar la reproducción
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Repetir continuamente (sonido de fondo)
+        } else {
+            System.err.println("Error al cargar el sonido");
+        }
+      
+
+    }
+
 
 }
