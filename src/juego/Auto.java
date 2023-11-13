@@ -56,7 +56,7 @@ public class Auto {
 				Random random = new Random();
 				Punto coordenada = new Punto(0, 0);
 				int RandomLadoAparicion = random.nextInt(1, 4);
-				cordenadaenemigos = Utilidades.coordenadaAparicionEnemigo(RandomLadoAparicion);
+				cordenadaenemigos = Utilidades.coordenadaAparicionAuto(RandomLadoAparicion);
 				for (int x = 1; x < cordenadaenemigos.length + 1; x++) {
 					if (x == RandomLadoAparicion)
 						coordenada = cordenadaenemigos[random.nextInt(4)];
