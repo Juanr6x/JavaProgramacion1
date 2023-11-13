@@ -3,11 +3,12 @@ package juego;
 import entorno.Entorno;
 import entorno.InterfaceJuego;
 
-
 import java.awt.Color;
 import java.awt.event.*;
 // import entorno.Menu;
 // import entorno.Herramientas;
+
+import javax.swing.JFrame;
 
 public class Juego extends InterfaceJuego {
 	private Entorno entorno;
@@ -31,8 +32,8 @@ public class Juego extends InterfaceJuego {
 		this.cuadras = this.calle.getCuadras();
 		this.autos = this.calle.getAutos();
 		this.plantas = this.calle.getPlantas();
-		this.laika.setX(entorno.ancho()/2 );
-		this.laika.setY(entorno.alto()- (laika.getHeight()/2) );
+		this.laika.setX(entorno.ancho() / 2);
+		this.laika.setY(entorno.alto() - (laika.getHeight() / 2));
 		this.entorno.iniciar();
 		this.laika.setPuntaje(0);
 		this.laika.setEliminados(0);
@@ -43,8 +44,9 @@ public class Juego extends InterfaceJuego {
 		this.calle.dibujarse(entorno);
 		this.laika.dibujarse(entorno);
 
-		Utilidades.textoChico(entorno,"ENEMIGOS ELIMINADOS: " + laika.getEliminados(), 10,20,Color.GREEN);
-		Utilidades.textoChico(entorno,"PUNTAJE: " + laika.getPuntaje(), entorno.ancho()-150,20,Color.GREEN);
+		Utilidades.textoChico(entorno, "ENEMIGOS ELIMINADOS: " + laika.getEliminados(), 10, 20, Color.GREEN);
+		Utilidades.textoChico(entorno, "PUNTAJE: " + laika.getPuntaje(), entorno.ancho() - 150, 20, Color.GREEN);
+
 		// comprueba si laika se encuentra viva
 		if (!laika.isViva() && this.jugando) {
 			this.jugando = false;
@@ -63,29 +65,31 @@ public class Juego extends InterfaceJuego {
 		}
 		Auto.moverAutos(entorno, cuadras, autos);
 		Planta.moverPlantas(entorno, cuadras, plantas);
-		Planta.DispararPlantas(entorno, plantas,this.laika,autos);
-		laika.dispararRayo(entorno,plantas);
-
-		
-		
-			
-
-	
-		
+		Planta.DispararPlantas(entorno, plantas, this.laika, autos);
+		laika.dispararRayo(entorno, plantas);
 
 	}
 
 	public void windowClosing(WindowEvent e) {
-        volverAlMenu();
-    }
-	private void volverAlMenu() {
-        // Cierra la ventana actual del juego
-		entorno.dispose();
+		volverAlMenu();
+	}
 
-        // Crea una nueva instancia de la ventana del menú
-        Menu menu = new Menu();
-        menu= null;
-    }
-	
+	private void volverAlMenu() {
+		// Cierra la ventana actual del juego
+		entorno.dispose();
+		// Crea una nueva instancia de la ventana del menú
+		Menu menu = new Menu();
+		menu = null;
+	}
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Menú");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(800, 600);
+		Menu panel = new Menu();
+		frame.add(panel);
+
+		frame.setVisible(true);
+	}
 
 }

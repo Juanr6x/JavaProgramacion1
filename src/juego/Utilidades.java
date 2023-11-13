@@ -17,7 +17,7 @@ abstract class Utilidades {
 		System.out.println("--------------------");
 	}
 
-	public	static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Laika obj2, char direccion) {
+	public static boolean sePuedeMover(Entorno e, Cuadra[] obj1, Laika obj2, char direccion) {
 		int agregarX = 0, agregarY = 0;
 
 		if (direccion == e.TECLA_ARRIBA)
@@ -35,7 +35,7 @@ abstract class Utilidades {
 				Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
 						obj2.getWidth(),
 						obj2.getHeight());
-				if (HayInterseccion(c1,c2)) {
+				if (HayInterseccion(c1, c2)) {
 					return false;
 				}
 			}
@@ -61,7 +61,7 @@ abstract class Utilidades {
 				Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
 						obj2.getWidth(),
 						obj2.getHeight());
-				if (HayInterseccion(c1,c2)) {
+				if (HayInterseccion(c1, c2)) {
 					return false;
 				}
 			}
@@ -85,10 +85,10 @@ abstract class Utilidades {
 			for (Cuadra ob1 : obj1) {
 				if (ob1 != null && obj2 != null) {
 					Cuadrado c1 = new Cuadrado(ob1.getX(), ob1.getY(), ob1.getWidth(), ob1.getHeight());
-					Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),obj2.getWidth(),obj2.getHeight());
-					
-					
-					if (HayInterseccion(c1,c2)) {
+					Cuadrado c2 = new Cuadrado(obj2.getX() + agregarX, obj2.getY() + agregarY + obj2.getVelocidad(),
+							obj2.getWidth(), obj2.getHeight());
+
+					if (HayInterseccion(c1, c2)) {
 						return false;
 					}
 				}
@@ -101,7 +101,7 @@ abstract class Utilidades {
 		if (obj1 != null && obj2 != null) {
 			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
 			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
+			if (HayInterseccion(c1, c2)) {
 				return true;
 			}
 		}
@@ -112,58 +112,58 @@ abstract class Utilidades {
 		if (obj1 != null && obj2 != null) {
 			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getWidth(), obj1.getHeight());
 			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
+			if (HayInterseccion(c1, c2)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public static boolean colision(RayoDestructor obj1, Planta obj2) {
-	
+
 		if (obj1 != null && obj2 != null) {
-			Cuadrado c1 = new Cuadrado(obj1.getX() , obj1.getY(),obj1.getAncho(),obj1.getAlto());
-			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());		
-			if (HayInterseccion(c1,c2)) 
+			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
+			if (HayInterseccion(c1, c2))
 				return true;
 		}
 
 		return false;
 	}
-	
+
 	public static boolean colision(BolaDeFuego obj1, Laika obj2) {
 		if (obj1 != null && obj2 != null) {
 			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
 			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
+			if (HayInterseccion(c1, c2)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	
 	public static boolean colision(BolaDeFuego obj1, Auto obj2) {
 		if (obj1 != null && obj2 != null) {
 			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
 			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getWidth(), obj2.getHeight());
-			if (HayInterseccion(c1,c2)) {
+			if (HayInterseccion(c1, c2)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public static boolean colision(RayoDestructor obj1, BolaDeFuego obj2) {
 		if (obj1 != null && obj2 != null) {
 			Cuadrado c1 = new Cuadrado(obj1.getX(), obj1.getY(), obj1.getAncho(), obj1.getAlto());
-			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getAncho (), obj2.getAlto());
-			if (HayInterseccion(c1,c2)) {
+			Cuadrado c2 = new Cuadrado(obj2.getX(), obj2.getY(), obj2.getAncho(), obj2.getAlto());
+			if (HayInterseccion(c1, c2)) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	// Devuelve las coordenadas de la cuadra correspondiente al numero de calle,
 	// para saber donde dibujarla posteriormente
 	static Punto coordenadaCuadra(int numeroDeCalle) {
@@ -192,8 +192,8 @@ abstract class Utilidades {
 		if (numeroDeCalle == 6) {
 			coordenadas.setX(725);
 			coordenadas.setY(565);
-	//		coordenadas.setX(635);
-	//		coordenadas.setY(440);
+			// coordenadas.setX(635);
+			// coordenadas.setY(440);
 		}
 
 		return coordenadas;
@@ -261,56 +261,60 @@ abstract class Utilidades {
 
 		return listCordenadas;
 	}
-	
+
 	public static boolean EstaAdentro(Cuadrado cuadrado, Punto punto) {
-	    return cuadrado.getX() - cuadrado.getAncho() / 2 < punto.getX() &&
-	           punto.getX() < cuadrado.getX() + cuadrado.getAncho() / 2 &&
-	           cuadrado.getY() - cuadrado.getAlto() / 2 < punto.getY() &&
-	           punto.getY() < cuadrado.getY() + cuadrado.getAlto() / 2;
+		return cuadrado.getX() - cuadrado.getAncho() / 2 < punto.getX() &&
+				punto.getX() < cuadrado.getX() + cuadrado.getAncho() / 2 &&
+				cuadrado.getY() - cuadrado.getAlto() / 2 < punto.getY() &&
+				punto.getY() < cuadrado.getY() + cuadrado.getAlto() / 2;
 	}
 
 	public static boolean HayInterseccion(Cuadrado c1, Cuadrado c2) {
-	    Punto p1 = new Punto(c2.getX() - c2.getAncho() / 2, c2.getY() + c2.getAlto() / 2);
-	    Punto p2 = new Punto(c2.getX() - c2.getAncho() / 2, c2.getY() - c2.getAlto() / 2);
-	    Punto p3 = new Punto(c2.getX() + c2.getAncho() / 2, c2.getY() + c2.getAlto() / 2);
-	    Punto p4 = new Punto(c2.getX() + c2.getAncho() / 2, c2.getY() - c2.getAlto() / 2);
+		Punto p1 = new Punto(c2.getX() - c2.getAncho() / 2, c2.getY() + c2.getAlto() / 2);
+		Punto p2 = new Punto(c2.getX() - c2.getAncho() / 2, c2.getY() - c2.getAlto() / 2);
+		Punto p3 = new Punto(c2.getX() + c2.getAncho() / 2, c2.getY() + c2.getAlto() / 2);
+		Punto p4 = new Punto(c2.getX() + c2.getAncho() / 2, c2.getY() - c2.getAlto() / 2);
 
-	    return EstaAdentro(c1, p1) || EstaAdentro(c1, p2) || EstaAdentro(c1, p3) || EstaAdentro(c1, p4);
+		return EstaAdentro(c1, p1) || EstaAdentro(c1, p2) || EstaAdentro(c1, p3) || EstaAdentro(c1, p4);
 	}
+
 	public static void mostrarPuntuacion(int puntuacion) {
-	        // Crear un cuadro de diálogo
-	        JOptionPane.showMessageDialog(
-	                null,                    // Componente padre (null para un cuadro de diálogo independiente)
-	                "¡Puntuación: " + puntuacion + "!",   // Mensaje a mostrar
-	                "GAME OVER",  // Título del cuadro de diálogo
-	                JOptionPane.INFORMATION_MESSAGE  // Tipo de mensaje (en este caso, informativo)
-	        );
-	    }
-	
-	//Agrega texto grande con sombra y color
-	public static void textoGrande(Entorno entorno,String texto, int x, int y, Color color) {
-		entorno.cambiarFont(Font.MONOSPACED,80 ,Color.BLACK);
+		// Crear un cuadro de diálogo
+		JOptionPane.showMessageDialog(
+				null, // Componente padre (null para un cuadro de diálogo independiente)
+				"¡Puntuación: " + puntuacion + "!", // Mensaje a mostrar
+				"GAME OVER", // Título del cuadro de diálogo
+				JOptionPane.INFORMATION_MESSAGE // Tipo de mensaje (en este caso, informativo)
+		);
+	}
+
+	// Agrega texto grande con sombra y color
+	public static void textoGrande(Entorno entorno, String texto, int x, int y, Color color) {
+		entorno.cambiarFont(Font.MONOSPACED, 80, Color.BLACK);
 		entorno.escribirTexto(texto, x - 2, y - 2);
-		entorno.cambiarFont(Font.MONOSPACED,80 , color);
+		entorno.cambiarFont(Font.MONOSPACED, 80, color);
 		entorno.escribirTexto(texto, x, y);
 	}
-	public static void textoChico(Entorno entorno,String texto, int x, int y, Color color) {
-		entorno.cambiarFont(Font.MONOSPACED,20 ,Color.BLACK);
+
+	public static void textoChico(Entorno entorno, String texto, int x, int y, Color color) {
+		entorno.cambiarFont(Font.MONOSPACED, 20, Color.BLACK);
 		entorno.escribirTexto(texto, x - 1, y - 1);
 		entorno.escribirTexto(texto, x - 2, y - 2);
 		entorno.escribirTexto(texto, x - 1, y - 1);
-		entorno.cambiarFont(Font.MONOSPACED,20 , color);
+		entorno.cambiarFont(Font.MONOSPACED, 20, color);
 		entorno.escribirTexto(texto, x, y);
 	}
-	public static boolean ExisteCordenadaPlanta(Planta[] plantas,int x, int y, int Direccion) {
-	    if (plantas != null && plantas.length > 0) {
-	        for (int i = 0; i < plantas.length; i++) {
-	            if (plantas[i] != null && plantas[i].getX() == x && plantas[i].getY() == y && plantas[i].getSentido().sentido == Direccion) {
-	                return true;
-	            }
-	        }
-	    }
-	    return false;
+
+	public static boolean ExisteCordenadaPlanta(Planta[] plantas, int x, int y, int Direccion) {
+		if (plantas != null && plantas.length > 0) {
+			for (int i = 0; i < plantas.length; i++) {
+				if (plantas[i] != null && plantas[i].getX() == x && plantas[i].getY() == y
+						&& plantas[i].getSentido().sentido == Direccion) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
