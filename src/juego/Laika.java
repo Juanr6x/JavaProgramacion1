@@ -172,9 +172,6 @@ public class Laika {
 
 		if (rayodestructor != null) {
 			if (rayodestructor.colisionRayoBolaDeFuego(rayodestructor, plantas) > -1) {
-				this.Puntaje = this.Puntaje + 5;
-				this.Eliminados = this.Eliminados + 1;
-				System.out.println("colision");
 				plantas[rayodestructor.colisionRayoBolaDeFuego(rayodestructor, plantas)].eliminarBolaDeFuego();
 				rayodestructor = null;
 			}
