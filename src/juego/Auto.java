@@ -121,7 +121,6 @@ public class Auto {
 		entorno.dibujarImagenConCentro(img, this.x, this.y, 0, 0, 0, escala);
 	}
 
-	// TODO
 	public void girarImagen() {
 		if (this.direccion.getDireccionString().equals("derecha")) {
 			this.img = Herramientas.cargarImagen("imagenes/auto-izquierda.png");

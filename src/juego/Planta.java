@@ -2,7 +2,6 @@ package juego;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.util.Random;
 
 import entorno.Entorno;
 import entorno.Herramientas;
@@ -15,7 +14,6 @@ public class Planta {
 	private int velocidad = 2;
 	private double escala = 0.07;
 	private Image imagen;
-	private static Planta[] plantas;
 	private Direccion direccion;
 	private Hitbox hitbox;
 	private boolean estaVivo = true;
@@ -152,6 +150,10 @@ public class Planta {
 
 	public BolaDeFuego getBolaDeFuego() {
 		return boladefuego;
+	}
+
+	public void eliminarBolaDeFuego() {
+		this.boladefuego = null;
 	}
 
 	public BolaDeFuego SetBolaDeFuego(BolaDeFuego VBolaDeFuego) {

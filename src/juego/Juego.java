@@ -75,7 +75,6 @@ public class Juego extends InterfaceJuego {
 		// Cierra la ventana actual del juego
 		entorno.dispose();
 		// Crea una nueva instancia de la ventana del menú
-		System.out.close();
 	}
 
 	public static void main(String[] args) {

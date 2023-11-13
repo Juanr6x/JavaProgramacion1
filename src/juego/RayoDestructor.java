@@ -101,6 +101,26 @@ public class RayoDestructor {
 		return false;
 	}
 
+	public int colisionRayoBolaDeFuego(RayoDestructor rayoDestructor, Planta[] plantas) {
+		if (rayoDestructor == null)
+			return -1;
+		for (int i = 0; i < plantas.length; i++) {
+			if (plantas[i].getBolaDeFuego() == null || rayoDestructor == null)
+				return -1;
+			BolaDeFuego boladefuego = plantas[i].getBolaDeFuego();
+			if (rayoDestructor != null && boladefuego != null) {
+				if (boladefuego != null) {
+					if (Utilidades.colision(rayoDestructor, boladefuego)) {
+						boladefuego = null; // Mato a la bola de fuego
+						return i;
+					}
+				}
+			}
+		}
+		return -1;
+
+	}
+
 	public boolean colisionRayoPlantas(RayoDestructor rayodestructor, Planta[] plantas) {
 		Punto[] cordenadaenemigos;
 		if (rayodestructor != null) {
